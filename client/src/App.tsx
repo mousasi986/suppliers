@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        console.log(JSON.stringify(response.data.message));
       })
       .catch(function (error) {
         console.log(error);
