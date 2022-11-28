@@ -6,9 +6,7 @@ $darker: #160639;
 $gray: #C6C6C6;
 
 
-* {
-  font-family: 'Roboto', sans-serif;
-}
+
 /* prevent default */
 body,
 h1,
@@ -24,7 +22,11 @@ figcaption,
 blockquote,
 dl,
 dd {
-    margin: 0;
+  margin: 0;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -32,13 +34,21 @@ body {
   margin: 0;
 }
 
-header{
-  width: 100%;
+header {
+  padding: 0 50px;
   height: 100px;
   background-color: $light;
-}
-
-.container{
-  margin:0 auto;
- 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  .logo {
+    width: 200px;
+  }
+  .main{
+    width: 400px;
+  }
+  .header_auth {
+    width: 200px;
+  }
 }
