@@ -1,10 +1,13 @@
 import React from 'react'
 import axios, { AxiosResponse } from 'axios'
-
+import Header from './partials/Header';
+import { useRoutes } from './router/Router'
+import { BrowserRouter } from 'react-router-dom';
+import './index.scss';
 
 
 const App: React.FC = () => {
-
+  const routes = useRoutes()
   // const sendRequest = (e: React.FormEvent) => {
   //   e.preventDefault()
   //   var data = ''
@@ -26,10 +29,12 @@ const App: React.FC = () => {
   // }
 
   return (
-    <div className="App">
-    
-
-    </div>
+    <BrowserRouter>
+      <Header />
+      <div className="container">
+        {routes}
+      </div>
+    </BrowserRouter>
   );
 }
 
