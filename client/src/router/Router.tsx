@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes} from "react-router-dom";
-import AuthScreen from '../screens/AuthScreen';
+import AuthPage from '../pages/AuthPage';
 
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<AuthScreen/>}/>
+            <Route path='/' element={<AuthPage/>}/>
             
         </Routes>
         

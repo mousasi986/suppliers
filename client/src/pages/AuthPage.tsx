@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AuthScreen:React.FC = () => {
+const AuthPage:React.FC = () => {
   return (
     <div>
       <h1>AuthScreen</h1>
@@ -8,4 +8,4 @@ const AuthScreen:React.FC = () => {
   )
 }
 
-export default AuthScreen
+export default AuthPage
