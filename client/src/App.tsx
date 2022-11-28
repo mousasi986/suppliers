@@ -1,16 +1,29 @@
 import React from 'react'
-import axios from 'axios'
+import axios, {AxiosResponse} from 'axios'
 
-
+interface resp {
+  message:string
+}
 
 const App:React.FC = () => {
 
   const sendRequest = () =>{
-  
-    axios.get("http://localhost:1000/api")
-    .then(res => {
-      console.log(res.data)
+    var data = ''
+    var config = {
+      method: 'get',
+      url: 'http://localhost:1000/api',
+      headers: { },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
     })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
   }
 
   return (
