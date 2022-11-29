@@ -2,11 +2,9 @@ import express, {Request, Response} from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import session from 'express-session'
-import mongoose from 'mongoose'
+
 
 dotenv.config()
-
-
 
 const PORT = process.env.PORT || 2000
 
@@ -29,13 +27,14 @@ app.get('/api', (req:Request,res:Response)=>{
     })
 })
 
+app.post('/xuina', (req:Request,res:Response)=>{
+    res.json(req.body)
+})
+
 async function start() {
     try {
-        await mongoose.connect(process.env.mongoURL!,{},(err) => {
-            if(err) throw err;
-            else console.log('successfully connected to mongoDB')})
         app.listen(PORT, () => {
-            console.log(console.log(`server was started on port ${PORT}` ))
+            console.log(`server was started on port ${PORT}` )
         })
     } catch (e) {
         console.log(e)
