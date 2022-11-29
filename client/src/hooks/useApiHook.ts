@@ -12,7 +12,7 @@ export type ApiResponse = {
 
 
 
-export const useApiGet = (url: string,RequestOptions:object): ApiResponse => {
+export const useApiGet = (url: string, RequestOptions:object): ApiResponse => {
     const [status, setStatus] = useState<Number>(0);
     const [statusText, setStatusText] = useState<String>('');
     const [data, setData] = useState<any>();
@@ -22,7 +22,7 @@ export const useApiGet = (url: string,RequestOptions:object): ApiResponse => {
     const getAPIData = async () => {
       setLoading(true);
       try {
-        const apiResponse = await fetch(url,RequestOptions);
+        const apiResponse = await fetch(url, RequestOptions);
         const json = await apiResponse.json();
         setStatus(apiResponse.status);
         setStatusText(apiResponse.statusText);
