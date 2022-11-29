@@ -1,41 +1,31 @@
-import { useEffect , useState} from "react";
+import { useState } from "react"
 
 
-export type ApiResponse = {
-    status:Number,
-    statusText:String,
-    data:any,
-    error:any,
-    loading:Boolean
+export const useHttp = () => {
+    const [loading, setLoading] = useState(false)
+
+    const request = <IData>(url: string, method: string = 'GET', body: Object | null = null, headers: any = {}): Promise<IData> => {
+        return new Promise(async (res, rej) => {
+            setLoading(true)
+            try {
+                let sBody: string | null = null
+                if (body) {
+                    sBody = JSON.stringify(body)
+                    headers['Content-type'] = 'application/json'
+                }
+                const responce = await fetch(url, { method, body: sBody, headers})
+                const data: IData = await responce.json()
+                setLoading(false)
+                res(data)
+
+
+            } catch (e) {
+                setLoading(false)
+                rej(e)
+            }
+        })
+    }
+
+    return { loading, request }
+
 }
-
-
-
-
-export const useApiGet = (url: string, RequestOptions:object): ApiResponse => {
-    const [status, setStatus] = useState<Number>(0);
-    const [statusText, setStatusText] = useState<String>('');
-    const [data, setData] = useState<any>();
-    const [error, setError] = useState<any>();
-    const [loading, setLoading] = useState<boolean>(false);
-  
-    const getAPIData = async () => {
-      setLoading(true);
-      try {
-        const apiResponse = await fetch(url, RequestOptions);
-        const json = await apiResponse.json();
-        setStatus(apiResponse.status);
-        setStatusText(apiResponse.statusText);
-        setData(json);
-      } catch (error) {
-        setError(error);
-      }
-      setLoading(false);
-    };
-  
-    useEffect(() => {
-      getAPIData();
-    }, []);
-  
-    return { status, statusText, data, error, loading };
-  };
