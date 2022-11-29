@@ -14,7 +14,7 @@ const AuthPage: React.FC = () => {
 
   }
   const sendQuery = () =>{
-    request<IHttpData>('/getPassword', 'POST', {chat_id: form.phone}, {}).then(result =>{
+    request<IHttpData>('/getPassword', 'POST', {phone: form.phone}, {}).then(result =>{
       console.log(result)
     })
   }
