@@ -18,7 +18,7 @@ const AuthPage: React.FC = () => {
     redirect: 'follow'
   };
 
-  const data: ApiResponse = useApiGet('http://a3ba-92-255-180-237.eu.ngrok.io/getPassword', requestOptions)
+  const data: ApiResponse = useApiGet('http://localhost:1000/getPassword', requestOptions)
   if (!data.loading) {
     console.log(data)
   }
