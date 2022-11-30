@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import session from 'express-session'
 import axios from 'axios'
+import authRouter from './routes/AuthRoute'
 
 
 
@@ -23,34 +24,15 @@ app.use(
     })
 )
 
+app.use('/auth',authRouter)
+
 app.get('/api', (req:Request,res:Response)=>{
     res.json({
         message:"SanyAAAAAA"
     })
 })
 
-app.post('/getPassword', (req:Request,res:Response)=>{
-    console.log(req.body)
 
-    var config = {
-        method: 'post',
-        url: 'https://a3ba-92-255-180-237.eu.ngrok.io/getPassword',
-        headers: { 
-          'Content-Type': 'application/json'
-        },
-        data : req.body
-      };
-      
-      axios(config)
-      .then(function (response) {
-        res.json(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-        
-})
 
 async function start() {
     try {

@@ -4,7 +4,7 @@ import { useState } from "react"
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
 
-    const request = <IData>(url: string, method: string = 'GET', body: Object | null = null, headers: any = {}): Promise<IData> => {
+    const request = <IData>(url: string, method: string = "GET", body: Object | null = null, headers: any = {}): Promise<IData> => {
         return new Promise(async (res, rej) => {
             setLoading(true)
             try {
