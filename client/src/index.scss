@@ -52,3 +52,22 @@ header {
     width: 200px;
   }
 }
+
+/* --------------------------------------------------------------------------------animations */
+@keyframes fromRight{
+  0%{
+      position: relative;
+      left: 1000px;
+  }
+  99%{
+      position: relative;
+      left: 0px;
+  }
+  100%{
+      position: initial;
+  }
+}
+
+@keyframes spawn {
+  from {color: transparent;}
+}

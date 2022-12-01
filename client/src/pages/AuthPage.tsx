@@ -9,6 +9,7 @@ const AuthPage: React.FC = () => {
     phone: '',
     password: ''
   })
+  
   const { request, loading } = useHttp()
   const changeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value })

@@ -1,4 +1,4 @@
-import Router from 'express'
+import Router, { request } from 'express'
 import axios  from 'axios'
 import {Request, Response} from 'express'
 
@@ -20,12 +20,17 @@ router.post('/getPassword', (req:Request,res:Response)=>{
       
       axios(config)
       .then(function (response) {
+            // if(response.data.message){
+            //   res.json({message:response.data.message})
+            // }
 
             if(req.body.password == response.data.password){
                 response.data = {...response.data, isAuth:true}
+                
                 res.json(response.data)
             }
             else{
+              console.log(response.data.message)
                 res.json({message:'Не правильный пароль',isAuth:false})
             }
         

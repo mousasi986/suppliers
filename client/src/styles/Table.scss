@@ -1,0 +1,44 @@
+@import '../index.scss';
+
+#applications {
+    margin: 30px;
+    border-collapse: collapse;
+    width: 90%;
+    animation: fromRight 1s;
+}
+
+#applications td,
+#applications th {
+    padding: 8px;
+}
+
+#applications tr {
+    background-color: white;
+    text-align: center;
+}
+
+#applications tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#applications tr:hover {
+    background-color: #ddd;
+    transition: 0.3s;
+}
+
+
+#applications th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-image: linear-gradient( $light, $light);
+    color: black;
+}
+
+#applications th:first-child {
+    background-image: linear-gradient(to left, $light, $dark);
+}
+
+#applications th:last-child {
+    background-image: linear-gradient(to right, $light, $dark);
+}

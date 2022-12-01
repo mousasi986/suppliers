@@ -6,5 +6,4 @@ export default interface IUser{
     categoryManager?:boolean,
     supplier?:boolean,
     isAdmin?:boolean
-    
 }
