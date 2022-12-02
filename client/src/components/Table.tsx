@@ -2,21 +2,41 @@ import React, { useState } from 'react'
 import '../styles/Table.scss'
 import CreateApplicationWindow from './CreateApplicationWindow'
 import TableStr from './TableStr'
+import ITableStr from '../interfaces/ITableStr'
 
 const Table: React.FC = () => {
-    const [showForm, setShowForm] = useState(false)
+    // const [showForm, setShowForm] = useState(false)
+    const [strings, setStrings] = useState<ITableStr[]>([{
+        number: '1231321',
+        date: '06122000',
+        supplier: 'sanya',
+        barcode: '123123',
+        status: true
+    },
+    {
+        number: 'a456456',
+        date: '07122000',
+        supplier: 'sanya123',
+        barcode: '123123222',
+        status: false
+    },
+    ])
 
-    const show = () => {
-        setShowForm(prev => {
-            prev = !prev
-            return prev
+
+    
+
+    const showEdit = (number:string, show:boolean) => {
+        setStrings(prev=>{
+            let newData = [...prev]
+            const index = newData.findIndex(el=> el.number === number)
+            newData[index].show = show
+            return newData
         })
     }
 
     return (
         <>
             <table id='applications'>
-
                 <tbody>
                     <tr>
                         <th>Номер</th>
@@ -25,8 +45,9 @@ const Table: React.FC = () => {
                         <th>Штрих-код категории</th>
                         <th>Статус</th>
                     </tr>
-                    
-                    <TableStr showFunc={show} show={showForm}/>
+                    {strings.map(el =>
+                        <TableStr key={el.number} data={el} showFunc={showEdit}/>
+                    )}
                 </tbody>
             </table>
         </>

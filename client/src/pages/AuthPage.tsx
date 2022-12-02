@@ -9,14 +9,14 @@ const AuthPage: React.FC = () => {
     phone: '',
     password: ''
   })
-  
+
   const { request, loading } = useHttp()
   const changeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value })
 
   }
   const sendQuery = () =>{
-    request<IUser>('/auth/getPassword', 'POST', {phone: form.phone, password:form.password}, {}).then(result =>{
+    request<IUser>('/auth/getPassword', 'POST', {phone: form.phone, password: form.password}, {}).then(result =>{
       if(result.isAuth == false){
         alert(result.message)
       }
