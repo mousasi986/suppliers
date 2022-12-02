@@ -16,8 +16,8 @@ const AuthPage: React.FC = () => {
 
   }
   const sendQuery = () =>{
-    request<IUser>('/auth/getPassword', 'POST', {phone: form.phone, password:form.password}, {}).then(result =>{
-      if(result.isAuth == false){
+    request<IUser>('/api/login', 'POST', {phone: form.phone, password:form.password}, {}).then(result =>{
+      if(result.isAuth === false){
         alert(result.message)
       }
       else{

@@ -1,13 +1,11 @@
-import Router, { request } from 'express'
 import axios  from 'axios'
 import {Request, Response} from 'express'
+import userService from '../service/userService';
 
+class UserController {
 
-const router = Router()
-
-
-router.post('/getPassword', (req:Request,res:Response)=>{
-    console.log(req.body)
+    async login(req:Request,res:Response){
+        console.log(req.body)
 
     var config = {
         method: 'POST',
@@ -19,15 +17,19 @@ router.post('/getPassword', (req:Request,res:Response)=>{
       };
       
       axios(config)
-      .then(function (response) {
-            // if(response.data.message){
-            //   res.json({message:response.data.message})
-            // }
-
+      .then(async function (response) {
+        
             if(req.body.password == response.data.password){
                 response.data = {...response.data, isAuth:true}
+                try{
+                  const userData = await userService.login(req.body.phone,req.body.password)
+                  res.cookie('refreshToken', userData.refreshToken,{maxAge: 30*24*60*60*1000, httpOnly:true})
+                  res.json(userData)
+                }
+                catch(e){
+                  console.log(e)
+                }
                 
-                res.json(response.data)
             }
             else{
               console.log(response.data.message)
@@ -40,8 +42,10 @@ router.post('/getPassword', (req:Request,res:Response)=>{
         console.log(error.response.data);
       });
 
-        
-})
+
+    }
+
+}
 
 
-export default router
+export default new UserController()
