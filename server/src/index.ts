@@ -2,18 +2,21 @@ import express, {Request, Response} from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import session from 'express-session'
-import axios from 'axios'
-import authRouter from './routes/AuthRoute'
+import Router from './routes/index'
+import mongoose, { Error } from 'mongoose'
+import cookieParser from 'cookie-parser'
 
 
 
 dotenv.config()
 
 const PORT = process.env.PORT || 2000
+const mongoURL = process.env.mongoURL
 
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(cors({origin: "http://localhost:3000",credentials:true}))
 app.use(
     session({
@@ -24,7 +27,7 @@ app.use(
     })
 )
 
-app.use('/auth',authRouter)
+app.use('/api',Router)
 
 app.get('/api', (req:Request,res:Response)=>{
     res.json({
@@ -36,6 +39,12 @@ app.get('/api', (req:Request,res:Response)=>{
 
 async function start() {
     try {
+         await mongoose.connect(mongoURL!, { autoCreate:true
+        }, (err: Error) => {
+            if (err) throw err
+            console.log('Successfully connected to mongo')
+            
+        })
         app.listen(PORT, () => {
             console.log(`server was started on port ${PORT}` )
         })
