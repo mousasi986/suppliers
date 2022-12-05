@@ -8,6 +8,11 @@ const UserSchema = new Schema({
     password:{
         type:String,
         required:true},
+    chatId:{
+        type:Number,
+        required:true,
+        unique:true
+    }
 })
 
 export default model('User',UserSchema)

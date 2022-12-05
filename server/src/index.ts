@@ -5,6 +5,7 @@ import session from 'express-session'
 import Router from './routes/index'
 import mongoose, { Error } from 'mongoose'
 import cookieParser from 'cookie-parser'
+import errorMiddleware from '../src/middleware/errorMiddleware'
 
 
 
@@ -28,6 +29,7 @@ app.use(
 )
 
 app.use('/api',Router)
+app.use(errorMiddleware)
 
 app.get('/api', (req:Request,res:Response)=>{
     res.json({

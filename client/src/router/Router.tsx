@@ -18,12 +18,6 @@ export const useRoutes = () => {
               <Route path='*' element={<Navigate replace to="/" />} />
           </Routes>
     )
-  // }
-  // return(
-  //   <Routes>
-      
-  //   </Routes>
-  // )
 
 }
 
