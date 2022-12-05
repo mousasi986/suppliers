@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/AuthPage.scss'
-import {useHttp} from '../hooks/useApiHook'
+import { useHttp } from '../hooks/useApiHook'
 import IUser from '../interfaces/IUser'
 
 
@@ -15,13 +15,13 @@ const AuthPage: React.FC = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
 
   }
-  const sendQuery = () =>{
+  const sendQuery = () => {
 
-    request<IUser>('/api/login', 'POST', {phone: form.phone, password:form.password}, {}).then(result =>{
-      if(result.isAuth === false){
+    request<IUser>('/api/login', 'POST', { phone: form.phone, password: form.password }, {}).then(result => {
+      if (result.isAuth === false) {
         alert(result.message)
       }
-      else{
+      else {
         console.log('successfully autentificated')
       }
     })
@@ -31,6 +31,7 @@ const AuthPage: React.FC = () => {
 
   return (
     <div className='auth'>
+
       <div className='auth_window'>
         <h1>Авторизация</h1>
         <div className='auth_block'>
@@ -54,6 +55,11 @@ const AuthPage: React.FC = () => {
         </div>
         {/* <button >Получить код</button> */}
         <button onClick={sendQuery}>Войти</button>
+      </div>
+      <div className='pic'>
+        
+        <img src="/qr.svg" alt="" style={{width:'238px', borderRadius:'10px', marginTop:'20px'}}/>
+
       </div>
     </div>
   )

@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import '../styles/Table.scss'
 import CreateApplicationWindow from './CreateApplicationWindow'
 import TableStr from './TableStr'
-import ITableStr from '../interfaces/ITableStr'
+import IApplication from '../interfaces/IApplication'
 
 const Table: React.FC = () => {
-    // const [showForm, setShowForm] = useState(false)
-    const [strings, setStrings] = useState<ITableStr[]>([{
+    const [strings, setStrings] = useState<IApplication[]>([{
         number: '1231321',
         date: '06122000',
         supplier: 'sanya',
@@ -21,21 +20,8 @@ const Table: React.FC = () => {
         status: false
     },
     ])
-
-
     
-
-    const showEdit = (number:string, show:boolean) => {
-        setStrings(prev=>{
-            let newData = [...prev]
-            const index = newData.findIndex(el=> el.number === number)
-            newData[index].show = show
-            return newData
-        })
-    }
-
     return (
-        <>
             <table id='applications'>
                 <tbody>
                     <tr>
@@ -46,11 +32,10 @@ const Table: React.FC = () => {
                         <th>Статус</th>
                     </tr>
                     {strings.map(el =>
-                        <TableStr key={el.number} data={el} showFunc={showEdit}/>
+                        <TableStr key={el.number} data={el}/>
                     )}
                 </tbody>
             </table>
-        </>
     )
 }
 

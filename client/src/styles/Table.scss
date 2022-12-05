@@ -1,9 +1,10 @@
 @import '../index.scss';
 
 #applications {
-    margin: 30px;
+
+    margin-top: 30px;
     border-collapse: collapse;
-    width: 90%;
+    width: 100%;
     animation: fromRight 1s;
 }
 

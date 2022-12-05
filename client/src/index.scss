@@ -42,32 +42,49 @@ header {
   align-items: center;
   justify-content: space-between;
   text-align: center;
+
   .logo {
     width: 200px;
   }
-  .main{
+
+  .main {
     width: 400px;
   }
+
   .header_auth {
     width: 200px;
   }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 /* --------------------------------------------------------------------------------animations */
-@keyframes fromRight{
-  0%{
-      position: relative;
-      left: 1000px;
+@keyframes fromRight {
+  0% {
+    position: relative;
+    left: 1000px;
   }
-  99%{
-      position: relative;
-      left: 0px;
+
+  99% {
+    position: relative;
+    left: 0px;
   }
-  100%{
-      position: initial;
+
+  100% {
+    position: initial;
   }
 }
 
 @keyframes spawn {
-  from {color: transparent;}
+  from {
+    color: transparent;
+  }
 }

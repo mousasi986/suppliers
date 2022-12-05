@@ -1,4 +1,4 @@
-export default interface ITableStr {
+export default interface IApplication {
     number: string,
     date: string,
     supplier: string,
