@@ -28,7 +28,7 @@ export default class Store{
     }
 
     async login(phone:string,password:string){
-
+        this.setAuthLoading(true)
         try{
             const response = await AuthService.login(phone,password)
             console.log(response.data)
@@ -38,6 +38,8 @@ export default class Store{
             console.log(this.isAuth)
         }catch(e){
             console.log(e)
+        }finally{
+            this.setAuthLoading(false)
         }
     }
 

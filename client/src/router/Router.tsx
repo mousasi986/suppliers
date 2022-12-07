@@ -16,7 +16,6 @@ const useRoutes = () => {
     if(!store.isAuth){
         return(
             <Routes>
-                <Route path='/' element={<MainPage/>}/>
                 <Route path='/auth' element={<AuthPage/>}/>
                 <Route path='*' element={<Navigate replace to="/auth" />} />
             </Routes>
