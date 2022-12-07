@@ -5,8 +5,8 @@ import CategoryManagersPage from '../pages/CategoryManagersPage';
 import ApplicationPage from '../pages/ApplicationPage';
 import Table from "../components/Table";
 import { useContext } from "react";
-import { observer } from "mobx-react-lite";
 import { Context } from "../index";
+import { observer } from "mobx-react-lite";
 import MainPage from "../pages/MainPage";
 
 
@@ -18,7 +18,7 @@ const useRoutes = () => {
             <Routes>
                 <Route path='/auth' element={<AuthPage/>}/>
                 <Route path='*' element={<Navigate replace to="/auth" />} />
-            </Routes>
+            </Routes>     
         )
     }
     else{

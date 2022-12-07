@@ -45,20 +45,28 @@ header {
 
   .logo {
     width: 200px;
+    font-size: 40px;
+    font-weight: bold;
   }
 
   .main {
-    width: 400px;
+    font-size: 20px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .header_auth {
     width: 200px;
+    font-size: 20px;
   }
 
   a {
     text-decoration: none;
     color: black;
+    cursor: pointer;
   }
+
 }
 
 .container {
