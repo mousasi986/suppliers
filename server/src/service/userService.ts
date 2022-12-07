@@ -6,7 +6,7 @@ import ApiError from "../exceptions/apiError"
 import {Request,Response} from 'express'
 
 class UserService{
-    async login(phone:string,password:string,chatId:number){
+    async login(phone:string,password:string,chatId:number,messageId:number){
         const hashPassword = await bcrypt.hash(password,3)
         const candidate = await userModel.findOne({phone})
         if(candidate){
@@ -22,7 +22,7 @@ class UserService{
             return{...tokens,user:userDto}
              
         }
-        const user = await userModel.create({phone,password: hashPassword,chatId})
+        const user = await userModel.create({phone,password: hashPassword,chatId,messageId})
         const  userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})
         await tokenService.saveToken(userDto.id,tokens.refreshToken)
@@ -55,8 +55,6 @@ class UserService{
 
         return {...tokens,user:userDto}
      }
-
-
 
 }
 

@@ -3,6 +3,7 @@ import axios  from 'axios'
 import userController from '../controllers/userController'
 import {Request, Response} from 'express'
 import {body} from "express-validator"
+import authMiddleware from '../middleware/authMiddleware'
 
 const router = Router()
 
@@ -11,6 +12,7 @@ router.post('/login',body('phone').isMobilePhone('ru-RU'),body('password').isLen
 router.post('/logout',userController.logout)
 
 router.get('/refresh',userController.refresh)
+// router.get('/docs',authMiddleware)
 
 
 export default router

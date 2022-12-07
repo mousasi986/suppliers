@@ -1,7 +1,10 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Link } from 'react-router-dom'
-
+import { Context } from '../index';
 const Header = () => {
+
+  const{store} = useContext(Context)
+
   return (
       <header>
         <div className='logo'>
@@ -11,7 +14,7 @@ const Header = () => {
           <Link to='/applications'>Все заявки</Link>
         </div>
         <div className='header_auth'>
-          <Link to='/'>Вход</Link>
+            <button onClick={()=> store.logout()}>Выход</button>
         </div>
       </header>
   )

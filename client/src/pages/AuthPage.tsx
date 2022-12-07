@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../styles/AuthPage.scss'
 import { useHttp } from '../hooks/useApiHook'
 import IUser from '../interfaces/IUser'
+import { Context } from '../index'
+import { observer } from 'mobx-react-lite'
 
 
 const AuthPage: React.FC = () => {
@@ -10,23 +12,14 @@ const AuthPage: React.FC = () => {
     password: ''
   })
 
+  const {store} = useContext(Context)
+
   const { request, loading } = useHttp()
   const changeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value })
 
   }
-  const sendQuery = () => {
-
-    request<IUser>('/api/login', 'POST', { phone: form.phone, password: form.password }, {}).then(result => {
-      if (result.isAuth === false) {
-        alert(result.message)
-      }
-      else {
-        console.log('successfully autentificated')
-      }
-    })
-  }
-
+  
 
 
   return (
@@ -63,9 +56,12 @@ const AuthPage: React.FC = () => {
           </div>
           <button onClick={sendQuery}>Войти</button>
         </div>
-        <div className='pic'>
-
-          <img src="/qr.svg" alt="" style={{ width: '238px', borderRadius: '10px', marginTop: '20px' }} />
+        {/* <button >Получить код</button> */}
+        <button onClick={() => store.login(form.phone,form.password)}>Войти</button>
+      </div>
+      <div className='pic'>
+        
+        <img src="/qr.svg" alt="" style={{width:'238px', borderRadius:'10px', marginTop:'20px'}}/>
 
         </div>
       </div>
@@ -73,4 +69,4 @@ const AuthPage: React.FC = () => {
   )
 }
 
-export default AuthPage
+export default observer(AuthPage)

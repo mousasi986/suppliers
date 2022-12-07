@@ -4,14 +4,20 @@ const UserSchema = new Schema({
     phone:{
         type:String,
         unique:true ,
-        required:true},
+        required:true
+    },
     password:{
         type:String,
-        required:true},
+        required:true
+    },
     chatId:{
         type:Number,
         required:true,
         unique:true
+    },
+    messageId:{
+        type:Number,
+        required:true,
     }
 })
 
