@@ -1,6 +1,5 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState} from 'react'
 import '../styles/Table.scss'
-import CreateApplicationWindow from './CreateApplicationWindow'
 import TableStr from './TableStr'
 import IApplication from '../interfaces/IApplication'
 

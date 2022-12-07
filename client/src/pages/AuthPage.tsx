@@ -23,28 +23,38 @@ const AuthPage: React.FC = () => {
 
 
   return (
-    <div className='auth'>
-
-      <div className='auth_window'>
-        <h1>Авторизация</h1>
-        <div className='auth_block'>
-          <label>Логин</label>
-          <input
-            placeholder='Введите телефон'
-            name='phone'
-            value={form.phone}
-            onChange={changeForm}
-          />
-        </div>
-        <div className='auth_block'>
-          <label>Пароль</label>
-          <input
-            placeholder='Введите пароль'
-            name='password'
-            type={"password"}
-            value={form.password}
-            onChange={changeForm}
-          />
+    <>
+      {
+        loading ?
+          <div className='dark'>
+            < div className="lds-ripple"><div></div><div></div></div >
+          </div >
+          :
+          <div></div>
+      }
+      <div className='auth'>
+        <div className='auth_window'>
+          <h1>Авторизация</h1>
+          <div className='auth_block'>
+            <label>Логин</label>
+            <input
+              placeholder='Введите телефон'
+              name='phone'
+              value={form.phone}
+              onChange={changeForm}
+            />
+          </div>
+          <div className='auth_block'>
+            <label>Пароль</label>
+            <input
+              placeholder='Введите пароль'
+              name='password'
+              type={"password"}
+              value={form.password}
+              onChange={changeForm}
+            />
+          </div>
+          <button onClick={sendQuery}>Войти</button>
         </div>
         {/* <button >Получить код</button> */}
         <button onClick={() => store.login(form.phone,form.password)}>Войти</button>
@@ -53,8 +63,9 @@ const AuthPage: React.FC = () => {
         
         <img src="/qr.svg" alt="" style={{width:'238px', borderRadius:'10px', marginTop:'20px'}}/>
 
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
