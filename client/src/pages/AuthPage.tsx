@@ -12,14 +12,14 @@ const AuthPage: React.FC = () => {
     password: ''
   })
 
-  const {store} = useContext(Context)
+  const { store } = useContext(Context)
 
   const { request, loading } = useHttp()
   const changeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value })
 
   }
-  
+
 
 
   return (
@@ -54,17 +54,17 @@ const AuthPage: React.FC = () => {
               onChange={changeForm}
             />
           </div>
-          <button onClick={sendQuery}>Войти</button>
+          <button onClick={() => store.login(form.phone, form.password)}>Войти</button>
         </div>
-        {/* <button >Получить код</button> */}
-        <button onClick={() => store.login(form.phone,form.password)}>Войти</button>
-      </div>
-      <div className='pic'>
-        
-        <img src="/qr.svg" alt="" style={{width:'238px', borderRadius:'10px', marginTop:'20px'}}/>
+        <div className='pic'>
+
+          <img src="/qr.svg" alt="" style={{ width: '238px', borderRadius: '10px', marginTop: '20px' }} />
 
         </div>
+        {/* <button >Получить код</button> */}
+
       </div>
+
     </>
   )
 }

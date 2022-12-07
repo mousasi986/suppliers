@@ -25,7 +25,8 @@
         align-items: center;
     }
     .pic{
-        
+        display: flex;
+        justify-content: center;
     }
     input{
         height: 20px;

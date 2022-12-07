@@ -28,7 +28,7 @@ const useRoutes = () => {
                 <Route path='/application/:id' element={<ApplicationPage/>}/>
                 <Route path='/categoryManager' element={<CategoryManagersPage/>}/>
                 
-                {/* <Route path='*' element={<Navigate replace to="/" />} /> */}
+                <Route path='*' element={<Navigate replace to="/admin" />} />
             </Routes>
       )
     }
