@@ -19,7 +19,7 @@ const Header = () => {
         </div>
         <div className='header_auth'>
           {store.isAuth?
-          <a onClick={()=> store.logout()}>Выход</a>
+          <a href='/' onClick={()=> {store.logout()}}>Выход</a>
           :
           <></>
           }

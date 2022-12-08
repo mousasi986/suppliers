@@ -13,15 +13,15 @@ import MainPage from "../pages/MainPage";
 const useRoutes = () => {
     const {store} = useContext(Context)
 
-    if(!store.isAuth){
-        return(
-            <Routes>
-                <Route path='/auth' element={<AuthPage/>}/>
-                <Route path='*' element={<Navigate replace to="/auth" />} />
-            </Routes>     
-        )
-    }
-    else{
+    // if(!store.isAuth){
+    //     return(
+    //         <Routes>
+    //             <Route path='/auth' element={<AuthPage/>}/>
+    //             <Route path='*' element={<Navigate replace to="/auth" />} />
+    //         </Routes>     
+    //     )
+    // }
+    // else{
         return (
             <Routes>
                 <Route path='/' element={<MainPage/>}/>
@@ -33,7 +33,7 @@ const useRoutes = () => {
                 <Route path='*' element={<Navigate replace to="/" />} />
             </Routes>
       )
-    }
+    // }
     
 
 }
