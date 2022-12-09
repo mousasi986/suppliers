@@ -4,21 +4,21 @@ import TableStr from './TableStr'
 import IApplication from '../interfaces/IApplication'
 
 const Table: React.FC = () => {
-    const [strings, setStrings] = useState<IApplication[]>([{
-        number: '1231321',
-        date: '06122000',
-        supplier: 'sanya',
-        barcode: '123123',
-        status: true
-    },
-    {
-        number: 'a456456',
-        date: '07122000',
-        supplier: 'sanya123',
-        barcode: '123123222',
-        status: false
-    },
-    ])
+    // const [strings, setStrings] = useState<IApplication[]>([{
+    //     number: '1231321',
+    //     date: '06122000',
+    //     supplier: 'sanya',
+    //     barcode: '123123',
+    //     status: true
+    // },
+    // {
+    //     number: 'a456456',
+    //     date: '07122000',
+    //     supplier: 'sanya123',
+    //     barcode: '123123222',
+    //     status: false
+    // },
+    // ])
     
     return (
             <table id='applications'>
@@ -30,9 +30,9 @@ const Table: React.FC = () => {
                         <th>Штрих-код категории</th>
                         <th>Статус</th>
                     </tr>
-                    {strings.map(el =>
+                    {/* {strings.map(el =>
                         <TableStr key={el.number} data={el}/>
-                    )}
+                    )} */}
                 </tbody>
             </table>
     )

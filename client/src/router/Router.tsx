@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { Context } from "../index";
 import { observer } from "mobx-react-lite";
 import MainPage from "../pages/MainPage";
+import SuppliersPage from "../pages/SuppliersPage";
 
 
 const useRoutes = () => {
@@ -25,10 +26,13 @@ const useRoutes = () => {
         return (
             <Routes>
                 <Route path='/' element={<MainPage/>}/>
-                <Route path='/admin' element={<AdminPage/>}/>
+                
                 <Route path='/applications' element={<Table/>}/>
                 <Route path='/application/:id' element={<ApplicationPage/>}/>
-                <Route path='/categoryManager' element={<CategoryManagersPage/>}/>
+
+                <Route path='/admin' element={<AdminPage/>}/>
+                <Route path='/category_manager' element={<CategoryManagersPage/>}/>
+                <Route path='/supplier' element={<SuppliersPage/>}/>
                 
                 <Route path='*' element={<Navigate replace to="/" />} />
             </Routes>

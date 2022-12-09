@@ -12,7 +12,7 @@ const TableStr = ({data}:ITableStrProps) => {
     }
     return (
         <>
-            <tr onClick={applicationShow}>
+            {/* <tr onClick={applicationShow}>
                 <td>{data.number}</td>
                 <td>{data.date}</td>
                 <td>{data.supplier}</td>
@@ -22,7 +22,7 @@ const TableStr = ({data}:ITableStrProps) => {
                     :
                     <td>0</td>
                 }
-            </tr>
+            </tr> */}
         </>
     )
 }
