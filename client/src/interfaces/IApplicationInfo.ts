@@ -1,11 +1,12 @@
 export default interface IApplicationInfo {
+    barcode:string,
     name: string,
     nds: string,
     trademark: string,
     country: string,
     marking: string,
-    price: number,
-    recommended_price: number,
+    price: string,
+    recommended_price: string,
     size: string,
     weight: string,
     photo?: string

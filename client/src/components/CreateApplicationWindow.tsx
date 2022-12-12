@@ -3,7 +3,6 @@ import '../styles/CreateApplicationWindow.scss'
 import { useEffect } from 'react'
 import IApplication from '../interfaces/IApplication'
 import Input from './Input'
-import { formToJSON } from 'axios'
 
 const CreateApplicationWindow = (props: any) => {
 
@@ -18,39 +17,45 @@ const CreateApplicationWindow = (props: any) => {
     }, [])
 
 
-    
-    const [info, setInfo] = useState({
-        country: '',
-        marking: '',
+
+    const [item, setItem] = useState({
+        barcode: '',
         name: '',
         nds: '',
-        price: 0,
-        recommended_price: 0,
-        size: '',
         trademark: '',
+        country: '',
+        marking: '',
+        price: '',
+        recommended_price: '',
+        size: '',
         weight: '',
         photo: ''
     })
 
     const [main, setMain] = useState({
-        number: 0,
+        number: '',
         date: '',
+        supplier: '',
         company: '',
-        barcode: 0,
-        status: '',
+        category_manager: '',
+        status: ''
     })
 
     const submitHandler = () => {
-        let data:IApplication ={...main, info: info}
+        let data: IApplication = { ...main, items: [item] }
         console.log(data)
     }
 
     const changeMainHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMain({...main, [e.target.name]: e.target.value})
+        setMain({ ...main, [e.target.name]: e.target.value })
     }
     const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setInfo({...info, [e.target.name]: e.target.value})
+        setItem({ ...item, [e.target.name]: e.target.value })
     }
+    const changeSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setMain({ ...main, [e.target.name]: e.target.value })
+    }
+
 
     return (
         <div className='dark_modal'>
@@ -59,17 +64,29 @@ const CreateApplicationWindow = (props: any) => {
                     <h1>Основная информация</h1>
                     <div className='mainInfoBox'>
                         <Input settings={{ label: 'Номер', name: 'number', type: 'text' }} changeHandler={changeMainHandler} />
-                        <Input settings={{ label: 'Дата', name: 'date', type: 'text' }} changeHandler={changeMainHandler} />
+                        <Input settings={{ label: 'Дата', name: 'date', type: 'date' }} changeHandler={changeMainHandler} />
+                        <Input settings={{ label: 'Поставщик', name: 'supplier', type: 'text' }} changeHandler={changeMainHandler} />
                     </div>
                     <div className='mainInfoBox'>
                         <Input settings={{ label: 'Компания', name: 'company', type: 'text' }} changeHandler={changeMainHandler} />
-                        <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text' }} changeHandler={changeMainHandler} />
-                        <Input settings={{ label: 'Статус', name: 'status', type: 'text' }} changeHandler={changeMainHandler} />
+                        <Input settings={{ label: 'Кат. менеджер', name: 'category_manager', type: 'text' }} changeHandler={changeMainHandler} />
+                        <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+                            <div className='customInp'>
+                                <label style={{ width: '180px', height: '22px', overflow: 'hidden' }} htmlFor="status">Статус</label>
+                                <select style={{ height: '24px' }} name='status' onChange={changeSelectHandler}>
+                                    <option value='Черновик'>Черновик</option>
+                                    <option value='Запрос'>Запрос</option>
+                                    <option value='В работе'>В работе</option>
+                                    <option value='Согласовано'>Согласовано</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <h2>Дополнительная информация</h2>
                 <div className='dopInfo'>
                     <div className='dopInfoBox'>
+                        <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Имя', name: 'name', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'НДС', name: 'nds', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Торговая марка', name: 'trademark', type: 'text' }} changeHandler={changeInfoHandler} />
@@ -78,7 +95,7 @@ const CreateApplicationWindow = (props: any) => {
                     </div>
                     <div className='dopInfoBox'>
                         <Input settings={{ label: 'Цена', name: 'price', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Рек. цена', name: 'reccomended_price', type: 'text' }} changeHandler={changeInfoHandler} />
+                        <Input settings={{ label: 'Рек. цена', name: 'recommended_price', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Размер', name: 'size', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Вес', name: 'weight', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Фото', name: 'photo', type: 'text' }} changeHandler={changeInfoHandler} />

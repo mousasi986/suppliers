@@ -1,10 +1,11 @@
 import IApplicationInfo from "./IApplicationInfo";
 
 export default interface IApplication {
-    number: number,
+    number: string,
     date: string,
+    supplier: string,
     company: string,
-    barcode: number,
+    category_manager:string,
     status: string,
-    info: IApplicationInfo
+    items: [IApplicationInfo]
 }
