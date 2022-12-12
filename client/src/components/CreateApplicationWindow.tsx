@@ -18,19 +18,19 @@ const CreateApplicationWindow = (props: any) => {
 
 
 
-    const [item, setItem] = useState({
-        barcode: '',
-        name: '',
-        nds: '',
-        trademark: '',
-        country: '',
-        marking: '',
-        price: '',
-        recommended_price: '',
-        size: '',
-        weight: '',
-        photo: ''
-    })
+    // const [item, setItem] = useState({
+    //     barcode: '',
+    //     name: '',
+    //     nds: '',
+    //     trademark: '',
+    //     country: '',
+    //     marking: '',
+    //     price: '',
+    //     recommended_price: '',
+    //     size: '',
+    //     weight: '',
+    //     photo: ''
+    // })
 
     const [main, setMain] = useState({
         number: '',
@@ -42,16 +42,15 @@ const CreateApplicationWindow = (props: any) => {
     })
 
     const submitHandler = () => {
-        let data: IApplication = { ...main, items: [item] }
-        console.log(data)
+        console.log(JSON.stringify(main))
     }
 
     const changeMainHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setMain({ ...main, [e.target.name]: e.target.value })
     }
-    const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setItem({ ...item, [e.target.name]: e.target.value })
-    }
+    // const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setItem({ ...item, [e.target.name]: e.target.value })
+    // }
     const changeSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setMain({ ...main, [e.target.name]: e.target.value })
     }
@@ -61,7 +60,7 @@ const CreateApplicationWindow = (props: any) => {
         <div className='dark_modal'>
             <div className='createApplicationWindow'>
                 <div className='mainInfo'>
-                    <h1>Основная информация</h1>
+                    <h1>Новая заявка</h1>
                     <div className='mainInfoBox'>
                         <Input settings={{ label: 'Номер', name: 'number', type: 'text' }} changeHandler={changeMainHandler} />
                         <Input settings={{ label: 'Дата', name: 'date', type: 'date' }} changeHandler={changeMainHandler} />
@@ -83,7 +82,7 @@ const CreateApplicationWindow = (props: any) => {
                         </div>
                     </div>
                 </div>
-                <h2>Дополнительная информация</h2>
+                {/* <h2>Дополнительная информация</h2>
                 <div className='dopInfo'>
                     <div className='dopInfoBox'>
                         <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text' }} changeHandler={changeInfoHandler} />
@@ -100,7 +99,7 @@ const CreateApplicationWindow = (props: any) => {
                         <Input settings={{ label: 'Вес', name: 'weight', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Фото', name: 'photo', type: 'text' }} changeHandler={changeInfoHandler} />
                     </div>
-                </div>
+                </div> */}
 
                 <div className='buttonsBox'>
                     <button onClick={submitHandler}>Создать</button>

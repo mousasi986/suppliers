@@ -1,4 +1,4 @@
-export default interface IApplicationInfo {
+export default interface IApplicationItem {
     barcode:string,
     name: string,
     nds: string,

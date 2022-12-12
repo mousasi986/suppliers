@@ -56,10 +56,10 @@ const AuthPage: React.FC = () => {
           </div>
           <button onClick={() => store.login(form.phone, form.password)}>Войти</button>
         </div>
-        <div className='pic'>
 
+        <div className='qr'>
+          <h1>Если у вас нет пароля, отсканируйте QR код</h1>
           <img src="/qr.svg" alt="" style={{ width: '238px', borderRadius: '10px', marginTop: '20px' }} />
-
         </div>
         {/* <button >Получить код</button> */}
 
