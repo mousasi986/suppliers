@@ -7,8 +7,9 @@ interface ITableStrProps {
 
 const TableStr = ({data}:ITableStrProps) => {
     const navigate = useNavigate()
+
     const applicationShow = () =>{
-        navigate(`/application/${data.number}`)
+        navigate(`/application`)
     }
     return (
         <>

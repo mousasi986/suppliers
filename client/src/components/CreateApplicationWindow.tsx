@@ -18,21 +18,6 @@ const CreateApplicationWindow = (props: any) => {
     }, [])
 
 
-
-    // const [item, setItem] = useState({
-    //     barcode: '',
-    //     name: '',
-    //     nds: '',
-    //     trademark: '',
-    //     country: '',
-    //     marking: '',
-    //     price: '',
-    //     recommended_price: '',
-    //     size: '',
-    //     weight: '',
-    //     photo: ''
-    // })
-
     const [main, setMain] = useState({
         number: '',
         date: '',
@@ -50,9 +35,6 @@ const CreateApplicationWindow = (props: any) => {
     const changeMainHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setMain({ ...main, [e.target.name]: e.target.value })
     }
-    // const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setItem({ ...item, [e.target.name]: e.target.value })
-    // }
     const changeSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setMain({ ...main, [e.target.name]: e.target.value })
     }
@@ -84,25 +66,6 @@ const CreateApplicationWindow = (props: any) => {
                         </div>
                     </div>
                 </div>
-                {/* <h2>Дополнительная информация</h2>
-                <div className='dopInfo'>
-                    <div className='dopInfoBox'>
-                        <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Имя', name: 'name', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'НДС', name: 'nds', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Торговая марка', name: 'trademark', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Страна', name: 'country', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Маркировка', name: 'marking', type: 'text' }} changeHandler={changeInfoHandler} />
-                    </div>
-                    <div className='dopInfoBox'>
-                        <Input settings={{ label: 'Цена', name: 'price', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Рек. цена', name: 'recommended_price', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Размер', name: 'size', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Вес', name: 'weight', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Фото', name: 'photo', type: 'text' }} changeHandler={changeInfoHandler} />
-                    </div>
-                </div> */}
-
                 <div className='buttonsBox'>
                     <button onClick={submitHandler}>Создать</button>
                     <button onClick={props.show}>Закрыть</button>
