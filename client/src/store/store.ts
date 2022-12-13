@@ -4,6 +4,7 @@ import AuthService from "../services/AuthService";
 import axios from 'axios'
 import AuthResponse from "../models/response/AuthResponse";
 import { API_URL } from "../http";
+import ApplicationService from "../services/ApplicationService";
 
 export default class Store{
     user = {} as IUser
@@ -70,4 +71,27 @@ export default class Store{
             this.setAuthLoading(false)
         }
     }
+
+    async addApplication(main:object)
+        {
+            try {
+                const response = await ApplicationService.addApplication(main)
+                console.log(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        
+    }
+
+    // async addApplicationItem(item:object){
+    //     try {
+
+    //         const response = await ApplicationService.addApplicationItem(item.id,item.data)
+    //         console.log(response.data)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+        
+        
+    // }
 }

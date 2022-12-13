@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import '../styles/AuthPage.scss'
-import { useHttp } from '../hooks/useApiHook'
 import IUser from '../interfaces/IUser'
 import { Context } from '../index'
 import { observer } from 'mobx-react-lite'
@@ -14,7 +13,7 @@ const AuthPage: React.FC = () => {
 
   const { store } = useContext(Context)
 
-  const { request, loading } = useHttp()
+  
   const changeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value })
 
@@ -25,7 +24,7 @@ const AuthPage: React.FC = () => {
   return (
     <>
       {
-        loading ?
+        store.isAuthLoading ?
           <div className='dark'>
             < div className="lds-ripple"><div></div><div></div></div >
           </div >

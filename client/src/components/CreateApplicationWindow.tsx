@@ -1,11 +1,12 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import '../styles/CreateApplicationWindow.scss'
 import { useEffect } from 'react'
 import IApplication from '../interfaces/IApplication'
 import Input from './Input'
+import { Context } from '../index'
 
 const CreateApplicationWindow = (props: any) => {
-
+    const {store} = useContext(Context)
     useEffect(() => {
         const close = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -42,7 +43,8 @@ const CreateApplicationWindow = (props: any) => {
     })
 
     const submitHandler = () => {
-        console.log(JSON.stringify(main))
+        console.log(main)
+        store.addApplication(main)
     }
 
     const changeMainHandler = (e: ChangeEvent<HTMLInputElement>) => {
