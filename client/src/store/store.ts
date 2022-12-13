@@ -5,6 +5,7 @@ import axios from 'axios'
 import AuthResponse from "../models/response/AuthResponse";
 import { API_URL } from "../http";
 import ApplicationService from "../services/ApplicationService";
+import IApplication from "../interfaces/IApplication";
 
 export default class Store{
     user = {} as IUser
@@ -94,4 +95,13 @@ export default class Store{
         
         
     // }
+
+    async getApplications(){
+        try {
+            const response = await axios.get<IApplication>(`${API_URL}/getApplications`,{withCredentials:true})
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

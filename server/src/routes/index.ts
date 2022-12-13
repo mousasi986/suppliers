@@ -15,7 +15,7 @@ router.post('/logout',userController.logout)
 router.get('/refresh',userController.refresh)
 router.post('/createApplication',applicationController.createAplication,authMiddleware)
 router.post('/createApplicationItem', applicationController.createApplicationItem,authMiddleware)
-//  router.get('/docs',authMiddleware)
+router.get('/getApplications',applicationController.getApplications,authMiddleware)
 
 
 export default router

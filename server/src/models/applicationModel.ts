@@ -1,5 +1,9 @@
 import {Schema,model} from 'mongoose'
 const ApplicationSchema = new Schema({
+    user:{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    },
     number:{
         type:String,
         required:true

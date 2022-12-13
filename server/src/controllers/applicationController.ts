@@ -24,6 +24,14 @@ class ApplicationController{
             next(error)
         }
     }
+    async getApplications(req:Request,res:Response,next:any){
+        try {
+            const applications = await applicationService.getApplications()
+            res.json(applications)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new ApplicationController()
