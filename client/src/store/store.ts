@@ -98,8 +98,10 @@ export default class Store{
 
     async getApplications(){
         try {
-            const response = await axios.get<IApplication>(`${API_URL}/getApplications`,{withCredentials:true})
-            return response
+            const response = await axios.get(`${API_URL}/getApplications`,{withCredentials:true})
+            console.log(response.data)
+            return response.data
+
         } catch (error) {
             console.log(error)
         }

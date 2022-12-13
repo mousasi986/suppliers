@@ -9,21 +9,21 @@ const TableStr = ({data}:ITableStrProps) => {
     const navigate = useNavigate()
 
     const applicationShow = () =>{
-        navigate(`/application`)
+        navigate(`/application/${data._id}`)
     }
     return (
         <>
-            {/* <tr onClick={applicationShow}>
+            <tr onClick={applicationShow}>
                 <td>{data.number}</td>
                 <td>{data.date}</td>
                 <td>{data.supplier}</td>
-                <td>{data.barcode}</td>
+                
                 {data.status ?
                     <td>1</td>
                     :
                     <td>0</td>
                 }
-            </tr> */}
+            </tr>
         </>
     )
 }

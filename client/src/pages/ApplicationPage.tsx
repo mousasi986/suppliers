@@ -5,10 +5,10 @@ import '../styles/AdminPage.scss'
 
 
 const ApplicationPage:React.FC = () => {
-
+    const id = useParams().id
     return(
         <div className='admin_main'>
-            <h1></h1>
+            <h1>{id}</h1>
         </div>
     )
 }

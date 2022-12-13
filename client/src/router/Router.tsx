@@ -28,7 +28,7 @@ const useRoutes = () => {
                 <Route path='/' element={<MainPage/>}/>
                 
                 <Route path='/applications' element={<Table/>}/>
-                <Route path='/application' element={<ApplicationPage/>}/>
+                <Route path='/application/:id' element={<ApplicationPage/>}/>
 
                 <Route path='/admin' element={<AdminPage/>}/>
                 <Route path='/category_manager' element={<CategoryManagersPage/>}/>

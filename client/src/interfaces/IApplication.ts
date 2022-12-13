@@ -4,5 +4,6 @@ export default interface IApplication {
     supplier: string,
     company: string,
     category_manager:string,
-    status: string
+    status: string,
+    _id: string
 }
