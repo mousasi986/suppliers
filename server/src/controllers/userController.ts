@@ -10,7 +10,7 @@ class UserController {
 
     var config = {
         method: 'POST',
-        url: 'https://a3ba-92-255-180-237.eu.ngrok.io/getPassword',
+        url: 'https://ef32-92-255-180-237.eu.ngrok.io/getPassword',
         headers: { 
           'Content-Type': 'application/json'
         },

@@ -36,8 +36,14 @@ const CreateItemWindow = (props: any) => {
 
 
     const submitHandler = () => {
-        console.log(item)
-        // store.addApplication(main)
+        const data = {
+            id:props.id,
+            data: {
+                ...item
+            }
+        }
+        store.addApplicationItem(data).then(()=>{props.refresh()})
+        props.show()
     }
 
     const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {

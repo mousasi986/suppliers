@@ -11,7 +11,7 @@ export default class ApplicationService{
     }
 
     static async addApplicationItem(data:object):Promise<AxiosResponse<IApplicationItem>>{
-        return $api.post<IApplicationItem>('createApplicationItem',{data})
+        return $api.post<IApplicationItem>('/createApplicationItem',data)
     }
 
 

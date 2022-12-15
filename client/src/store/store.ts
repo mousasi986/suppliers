@@ -74,6 +74,7 @@ export default class Store{
         {
             try {
                 const response = await ApplicationService.addApplication(main)
+                return response.data
             } catch (error) {
                 console.log(error)
             }
@@ -82,9 +83,10 @@ export default class Store{
 
     async addApplicationItem(item:object){
         try {
-
+            console.log(item)
             const response = await ApplicationService.addApplicationItem(item)
             console.log(response.data)
+            return response.data
         } catch (error) {
             console.log(error)
         }
@@ -104,9 +106,7 @@ export default class Store{
     async getApplicationItems(id:string){
         try {
             const response = await axios.get(`${API_URL}/getApplicationItems`,{withCredentials:true,data:id})
-            console.log(response.data)
             return response.data
-
         } catch (error) {
             console.log(error)
         }
