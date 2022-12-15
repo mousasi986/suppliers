@@ -9,7 +9,7 @@ import ItemTable from '../components/ItemTable'
 
 const ApplicationPage = () => {
     const id = useParams().id!
-    
+
     const { store } = useContext(Context)
     const [showForm, setShowForm] = useState(false)
     const [items, setItems] = useState<IApplicationItem[]>([])
@@ -23,15 +23,18 @@ const ApplicationPage = () => {
 
     useEffect(() => {
         store.getApplicationItems(id).then(result => {
+            if (result == null){
+                return
+            }
             setItems(() => {
-                return result.items})
+                return result.items
+            })
         })
     }, [])
 
     const refresh = () => {
         store.getApplicationItems(id).then(result => {
             setItems(() => {
-                 
                 return result.items
             })
         })
@@ -41,11 +44,16 @@ const ApplicationPage = () => {
             <h1>ID заявки: {id}</h1>
             <button onClick={showCreateModal}>Добавить позицию</button>
             {showForm ?
-                <CreateItemWindow id={id} show={showCreateModal} refresh={refresh}/>
+                <CreateItemWindow id={id} show={showCreateModal} refresh={refresh} />
                 :
                 <></>
             }
-            <ItemTable data={items}/>
+            {items.length == 0 ?
+                <h1>шел нах</h1>
+                :
+                <ItemTable data={items} />
+            }
+
         </div>
     )
 }
