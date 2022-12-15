@@ -23,7 +23,7 @@ const AdminPage:React.FC = () => {
             :
             <></>
             }
-            <Table />
+            {/* <Table /> */}
         </div>
     )
 }

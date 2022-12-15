@@ -17,12 +17,9 @@ const TableStr = ({data}:ITableStrProps) => {
                 <td>{data.number}</td>
                 <td>{data.date}</td>
                 <td>{data.supplier}</td>
-                
-                {data.status ?
-                    <td>1</td>
-                    :
-                    <td>0</td>
-                }
+                <td>{data.company}</td>
+                <td>{data.category_manager}</td>
+                <td>{data.status}</td>
             </tr>
         </>
     )

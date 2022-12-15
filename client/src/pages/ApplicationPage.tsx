@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Table from '../components/Table'
 import '../styles/AdminPage.scss'
+import CreateItemWindow from '../components/CreateItemWindow'
 
 
-const ApplicationPage:React.FC = () => {
+const ApplicationPage: React.FC = () => {
     const id = useParams().id
-    return(
+    const [showForm, setShowForm] = useState(false)
+
+    const showCreateModal = () => {
+        setShowForm(prev => {
+            prev = !prev
+            return prev
+        })
+    }
+    return (
         <div className='admin_main'>
-            <h1>{id}</h1>
+            <h1>ID заявки: {id}</h1>
+            <button onClick={showCreateModal}>Добавить позицию</button>
+            {showForm ?
+                <CreateItemWindow show={showCreateModal} />
+                :
+                <></>
+            }
         </div>
     )
 }

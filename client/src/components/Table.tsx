@@ -4,21 +4,14 @@ import TableStr from './TableStr'
 import IApplication from '../interfaces/IApplication'
 import { Context } from '../index'
 
+interface TableProps{
+    data: Array<IApplication>
+}
 
-const Table: React.FC = () => {
+const Table = ({data}:TableProps) => {
     const { store } = useContext(Context)
 
-    const [applications, setApplications] = useState([])
-
-
-    useEffect(() => {
-        store.getApplications().then(result => {
-            setApplications(prev => {
-                prev = result
-                return prev
-            })
-        })
-    }, [])
+    
 
     // const [strings, setStrings] = useState<IApplication[]>([{
     //     number: '1231321',
@@ -38,7 +31,7 @@ const Table: React.FC = () => {
 
     return (
         <>
-            {applications.length == 0 ?
+            {data.length == 0 ?
                 <></>
                 :
                 <table id='applications'>
@@ -47,11 +40,12 @@ const Table: React.FC = () => {
                             <th>Номер</th>
                             <th>Дата</th>
                             <th>Поставщик</th>
-                            <th>Штрих-код категории</th>
+                            <th>Фирма</th>
+                            <th>Кат. менеджер</th>
                             <th>Статус</th>
                         </tr>
-                        {applications.map(el =>
-                            <TableStr data={el} />
+                        {data.map(el =>
+                            <TableStr key={el._id} data={el} />
                         )}
                     </tbody>
                 </table>

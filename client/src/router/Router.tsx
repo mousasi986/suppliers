@@ -27,7 +27,7 @@ const useRoutes = () => {
             <Routes>
                 <Route path='/' element={<MainPage/>}/>
                 
-                <Route path='/applications' element={<Table/>}/>
+                {/* <Route path='/applications' element={<Table/>}/> */}
                 <Route path='/application/:id' element={<ApplicationPage/>}/>
 
                 <Route path='/admin' element={<AdminPage/>}/>

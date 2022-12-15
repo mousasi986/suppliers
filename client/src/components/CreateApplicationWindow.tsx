@@ -6,7 +6,8 @@ import Input from './Input'
 import { Context } from '../index'
 
 const CreateApplicationWindow = (props: any) => {
-    const {store} = useContext(Context)
+    const { store } = useContext(Context)
+
     useEffect(() => {
         const close = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -24,12 +25,13 @@ const CreateApplicationWindow = (props: any) => {
         supplier: '',
         company: '',
         category_manager: '',
-        status: ''
+        status: 'Черновик'
     })
 
     const submitHandler = () => {
-        console.log(main)
-        store.addApplication(main)
+        // store.addApplication(main).then(()=>{props.refresh().then(()=>{props.show()})})
+        store.addApplication(main).then(()=>{props.refresh()})
+        props.show()
     }
 
     const changeMainHandler = (e: ChangeEvent<HTMLInputElement>) => {

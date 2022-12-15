@@ -33,11 +33,9 @@ export default class Store{
         this.setAuthLoading(true)
         try{
             const response = await AuthService.login(phone,password)
-            console.log(response.data)
             localStorage.setItem('token',response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-            console.log(this.isAuth)
         }catch(e){
             console.log(e)
         }finally{
@@ -64,7 +62,6 @@ export default class Store{
             const response = await axios.get<AuthResponse>(`${API_URL}/refresh`,{withCredentials:true})
             localStorage.setItem('token',response.data.accessToken)
             this.setAuth(true)
-            console.log(this.isAuth)
             this.setUser(response.data.user)
         }catch(e){
             console.log(e)
@@ -77,7 +74,6 @@ export default class Store{
         {
             try {
                 const response = await ApplicationService.addApplication(main)
-                console.log(response.data)
             } catch (error) {
                 console.log(error)
             }
@@ -99,9 +95,7 @@ export default class Store{
     async getApplications(){
         try {
             const response = await axios.get(`${API_URL}/getApplications`,{withCredentials:true})
-            console.log(response.data)
             return response.data
-
         } catch (error) {
             console.log(error)
         }
