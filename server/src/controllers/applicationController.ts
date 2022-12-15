@@ -16,6 +16,7 @@ class ApplicationController{
         }
         
     }
+
     async createApplicationItem(req:Request,res:Response,next:any){
         try {
             const applicationItemData = await applicationService.createApplicationItem(req.body.id,req.body.data)
@@ -24,6 +25,7 @@ class ApplicationController{
             next(error)
         }
     }
+
     async getApplications(req:Request,res:Response,next:any){
         try {
             const applications = await applicationService.getApplications()
@@ -31,6 +33,18 @@ class ApplicationController{
         } catch (error) {
             next(error)
         }
+    }
+
+    async getApplicationItems(req:Request,res:Response,next:any){
+        try{
+            const applicationItems = await applicationService.getApplicationItems(req.body.id)
+            console.log(applicationItems)
+            res.json(applicationItems)
+        }
+        catch(error){
+            next(error)
+        }
+        
     }
 }
 

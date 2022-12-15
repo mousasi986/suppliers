@@ -4,6 +4,7 @@ import applicationModel from "../models/applicationModel"
 import ApplicationDto from "../dtos/applicationDto"
 import applicationItemModel from "../models/applicationItemModel"
 import userModel from "src/models/userModel"
+import { ContextHandlerImpl } from "express-validator/src/chain"
 
 
 class ApplicationService{
@@ -41,6 +42,11 @@ class ApplicationService{
     async getApplications(){
         const applications = await applicationModel.find() 
         return applications
+    }
+
+    async getApplicationItems(id:string){
+        const application =  await applicationModel.findOne({id}).populate('items')
+        return application
     }
 }
 

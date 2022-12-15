@@ -10,9 +10,11 @@ export default class ApplicationService{
 
     }
 
-    static async addApplicationItem(id:string,data:object):Promise<AxiosResponse<IApplicationItem>>{
-        return $api.post<IApplicationItem>('createApplicationItem',{id,data})
+    static async addApplicationItem(data:object):Promise<AxiosResponse<IApplicationItem>>{
+        return $api.post<IApplicationItem>('createApplicationItem',{data})
     }
+
+
 
 
 }

@@ -84,21 +84,32 @@ export default class Store{
         
     }
 
-    // async addApplicationItem(item:object){
-    //     try {
+    async addApplicationItem(item:object){
+        try {
 
-    //         const response = await ApplicationService.addApplicationItem(item.id,item.data)
-    //         console.log(response.data)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
+            const response = await ApplicationService.addApplicationItem(item)
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
         
         
-    // }
+    }
 
     async getApplications(){
         try {
             const response = await axios.get(`${API_URL}/getApplications`,{withCredentials:true})
+            console.log(response.data)
+            return response.data
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async getApplicationItems(){
+        try {
+            const response = await axios.get(`${API_URL}/getApplicationItems`,{withCredentials:true})
             console.log(response.data)
             return response.data
 
