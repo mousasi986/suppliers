@@ -101,9 +101,9 @@ export default class Store{
         }
     }
 
-    async getApplicationItems(){
+    async getApplicationItems(id:string){
         try {
-            const response = await axios.get(`${API_URL}/getApplicationItems`,{withCredentials:true})
+            const response = await axios.get(`${API_URL}/getApplicationItems`,{withCredentials:true,data:id})
             console.log(response.data)
             return response.data
 
