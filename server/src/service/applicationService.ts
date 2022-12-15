@@ -20,8 +20,8 @@ class ApplicationService{
         
     }
     async createApplicationItem(id:string,data:object){
-        console.log(id,data)
-        const application  = await applicationModel.findOne({id}) 
+        // console.log(id,data)
+        const application  = await applicationModel.findById(id) 
         if(application){
             const applicationItem = await applicationItemModel.create(data)
             .then(async(applicationItem)=>{
@@ -45,7 +45,7 @@ class ApplicationService{
     }
 
     async getApplicationItems(id:string){
-        const application =  await applicationModel.findOne({id}).populate('items')
+        const application =  await applicationModel.findById(id).populate("items")
         return application
     }
 }
