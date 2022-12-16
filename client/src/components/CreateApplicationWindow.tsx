@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import IApplication from '../interfaces/IApplication'
 import Input from './Input'
 import { Context } from '../index'
+import ReactDadataBox from 'react-dadata-box';
 
 const CreateApplicationWindow = (props: any) => {
     const { store } = useContext(Context)
@@ -40,7 +41,9 @@ const CreateApplicationWindow = (props: any) => {
     const changeSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setMain({ ...main, [e.target.name]: e.target.value })
     }
-
+    const changeDadataHandler = (suggestion: any) => {
+        setMain({...main, company: suggestion.unrestricted_value})  
+    }
 
     return (
         <div className='dark_modal'>
@@ -53,7 +56,11 @@ const CreateApplicationWindow = (props: any) => {
                         <Input settings={{ label: 'Поставщик', name: 'supplier', type: 'text' }} changeHandler={changeMainHandler} />
                     </div>
                     <div className='mainInfoBox'>
-                        <Input settings={{ label: 'Компания', name: 'company', type: 'text' }} changeHandler={changeMainHandler} />
+                        {/* <Input settings={{ label: 'Компания', name: 'company', type: 'text' }} changeHandler={changeMainHandler} /> */}
+                        <div className='customInp'>
+                            <label>Компания</label>
+                            <ReactDadataBox token="0784075aabbbf76e37f7d3b9fcf20d393da37b73" query="" type='party' onChange={changeDadataHandler} />
+                        </div>
                         <Input settings={{ label: 'Кат. менеджер', name: 'category_manager', type: 'text' }} changeHandler={changeMainHandler} />
                         <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
                             <div className='customInp'>

@@ -5,8 +5,10 @@ import { useEffect } from 'react'
 import Input from './Input'
 import { Context } from '../index'
 
+import ReactDadataBox from 'react-dadata-box';
+
 const CreateItemWindow = (props: any) => {
-    const {store} = useContext(Context)
+    const { store } = useContext(Context)
     useEffect(() => {
         const close = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -22,7 +24,7 @@ const CreateItemWindow = (props: any) => {
     const [item, setItem] = useState({
         barcode: '',
         name: '',
-        nds: '',
+        nds: '0',
         trademark: '',
         country: '',
         marking: '',
@@ -34,20 +36,26 @@ const CreateItemWindow = (props: any) => {
     })
 
 
-
     const submitHandler = () => {
         const data = {
-            id:props.id,
+            id: props.id,
             data: {
                 ...item
             }
         }
-        store.addApplicationItem(data).then(()=>{props.refresh()})
+        // console.log(data)
+        store.addApplicationItem(data).then(() => { props.refresh() })
         props.show()
     }
 
     const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setItem({ ...item, [e.target.name]: e.target.value })
+    }
+    const changeSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setItem({ ...item, [e.target.name]: e.target.value })
+    }
+    const changeDadataHandler = (suggestion: any) => {
+        setItem({...item, country: suggestion.unrestricted_value})  
     }
 
 
@@ -60,12 +68,25 @@ const CreateItemWindow = (props: any) => {
                     <div className='dopInfoBox'>
                         <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Имя', name: 'name', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'НДС', name: 'nds', type: 'text' }} changeHandler={changeInfoHandler} />
+                        <div className='customInp'>
+                            <label style={{ width: '180px', height: '22px', overflow: 'hidden' }} htmlFor="nds">НДС %</label>
+                            <select style={{ height: '24px' }} name='nds' onChange={changeSelectHandler}>
+                                <option value='0'>0</option>
+                                <option value='10'>10</option>
+                                <option value='20'>20</option>
+                            </select>
+                        </div>
+
                         <Input settings={{ label: 'Торговая марка', name: 'trademark', type: 'text' }} changeHandler={changeInfoHandler} />
-                        <Input settings={{ label: 'Страна', name: 'country', type: 'text' }} changeHandler={changeInfoHandler} />
+                        <div className='customInp'>
+                            <label>Страна</label>
+                            <ReactDadataBox token="0784075aabbbf76e37f7d3b9fcf20d393da37b73" query="" type='country' onChange={changeDadataHandler} />
+                        </div>
+                        {/* <Input settings={{ label: 'Страна', name: 'country', type: 'text' }} changeHandler={changeInfoHandler} /> */}
                         <Input settings={{ label: 'Маркировка', name: 'marking', type: 'text' }} changeHandler={changeInfoHandler} />
                     </div>
                     <div className='dopInfoBox'>
+
                         <Input settings={{ label: 'Цена', name: 'price', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Рек. цена', name: 'recommended_price', type: 'text' }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Размер', name: 'size', type: 'text' }} changeHandler={changeInfoHandler} />

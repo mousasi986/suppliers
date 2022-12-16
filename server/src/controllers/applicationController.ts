@@ -38,7 +38,6 @@ class ApplicationController{
     async getApplicationItems(req:Request,res:Response,next:any){
         try{
             const applicationItems = await applicationService.getApplicationItems(req.body.id)
-            console.log(applicationItems)
             res.json(applicationItems)
         }
         catch(error){

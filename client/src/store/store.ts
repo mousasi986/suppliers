@@ -6,111 +6,110 @@ import AuthResponse from "../models/response/AuthResponse";
 import { API_URL } from "../http";
 import ApplicationService from "../services/ApplicationService";
 import IApplication from "../interfaces/IApplication";
+import { config } from "process";
+import IApplicationItem from "../interfaces/IApplicationItem";
 
-export default class Store{
+export default class Store {
     user = {} as IUser
     isAuth = false
     isAuthLoading = false
 
 
-    constructor(){
+    constructor() {
         makeAutoObservable(this);
     }
 
-    setAuth(bool:boolean){
+    setAuth(bool: boolean) {
         this.isAuth = bool
     }
 
-    setUser(user: IUser){
+    setUser(user: IUser) {
         this.user = user
     }
 
-    setAuthLoading(bool:boolean){
+    setAuthLoading(bool: boolean) {
         this.isAuthLoading = bool
     }
 
-    async login(phone:string,password:string){
+    async login(phone: string, password: string) {
         this.setAuthLoading(true)
-        try{
-            const response = await AuthService.login(phone,password)
-            localStorage.setItem('token',response.data.accessToken)
+        try {
+            const response = await AuthService.login(phone, password)
+            localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-        }catch(e){
+        } catch (e) {
             console.log(e)
-        }finally{
+        } finally {
             this.setAuthLoading(false)
         }
     }
 
-    async logout(){
+    async logout() {
 
-        try{
+        try {
             const response = await AuthService.logout()
             localStorage.removeItem('token')
             this.setAuth(false)
             this.setUser({} as IUser)
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
 
     }
 
-    async checkAuth(){
+    async checkAuth() {
         this.setAuthLoading(true)
-        try{
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`,{withCredentials:true})
-            localStorage.setItem('token',response.data.accessToken)
+        try {
+            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, { withCredentials: true })
+            localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-        }catch(e){
+        } catch (e) {
             console.log(e)
-        }finally{
+        } finally {
             this.setAuthLoading(false)
         }
     }
 
-    async addApplication(main:object)
-        {
-            try {
-                const response = await ApplicationService.addApplication(main)
-                return response.data
-            } catch (error) {
-                console.log(error)
-            }
-        
+    async addApplication(main: object) {
+        try {
+            const response = await ApplicationService.addApplication(main)
+            return response.data
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
-    async addApplicationItem(item:object){
+    async addApplicationItem(item: object) {
         try {
-            console.log(item)
             const response = await ApplicationService.addApplicationItem(item)
-            console.log(response.data)
             return response.data
         } catch (error) {
             console.log(error)
         }
-        
-        
+
+
     }
 
-    async getApplications(){
+    async getApplications() {
         try {
-            const response = await axios.get(`${API_URL}/getApplications`,{withCredentials:true})
+            const response = await axios.get(`${API_URL}/getApplications`, { withCredentials: true })
             return response.data
         } catch (error) {
             console.log(error)
         }
     }
 
-    async getApplicationItems(id:string){
+    async getApplicationItems(id: string) {
         try {
-            console.log(id)
-            const response = await axios.get(`${API_URL}/getApplicationItems`,{withCredentials:true,data:id})
-            console.log(response.data)
+            const response = await ApplicationService.getApplicationItems(id)
             return response.data
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error)
         }
     }
+
 }

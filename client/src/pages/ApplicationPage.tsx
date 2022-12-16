@@ -49,7 +49,7 @@ const ApplicationPage = () => {
                 <></>
             }
             {items.length == 0 ?
-                <h1>шел нах</h1>
+                <h1>Нет позиций</h1>
                 :
                 <ItemTable data={items} />
             }

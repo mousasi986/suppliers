@@ -40,7 +40,7 @@ const Table = ({data}:TableProps) => {
                             <th>Номер</th>
                             <th>Дата</th>
                             <th>Поставщик</th>
-                            <th>Фирма</th>
+                            <th>Компания</th>
                             <th>Кат. менеджер</th>
                             <th>Статус</th>
                         </tr>
