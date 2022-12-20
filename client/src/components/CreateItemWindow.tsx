@@ -27,7 +27,7 @@ const CreateItemWindow = (props: any) => {
         nds: '0',
         trademark: '',
         country: '',
-        marking: '',
+        marking: 'Парфюмерия',
         price: '',
         recommended_price: '',
         size: '',
@@ -59,7 +59,6 @@ const CreateItemWindow = (props: any) => {
     }
 
 
-
     return (
         <div className='dark_modal'>
             <div className='createApplicationWindow'>
@@ -83,7 +82,15 @@ const CreateItemWindow = (props: any) => {
                             <ReactDadataBox token="0784075aabbbf76e37f7d3b9fcf20d393da37b73" query="" type='country' onChange={changeDadataHandler} />
                         </div>
                         {/* <Input settings={{ label: 'Страна', name: 'country', type: 'text' }} changeHandler={changeInfoHandler} /> */}
-                        <Input settings={{ label: 'Маркировка', name: 'marking', type: 'text' }} changeHandler={changeInfoHandler} />
+                        {/* <Input settings={{ label: 'Маркировка', name: 'marking', type: 'text' }} changeHandler={changeInfoHandler} /> */}
+                        <div className='customInp'>
+                            <label style={{ width: '180px', height: '22px', overflow: 'hidden' }} htmlFor="marking">Маркировка</label>
+                            <select style={{ height: '24px' }} name='marking' onChange={changeSelectHandler}>
+                                <option value='Парфюмерия'>Парфюмерия</option>
+                                <option value='Одежда'>Одежда</option>
+                                <option value='Обувь'>Обувь</option>
+                            </select>
+                        </div>
                     </div>
                     <div className='dopInfoBox'>
 
