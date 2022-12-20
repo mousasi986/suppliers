@@ -3,11 +3,11 @@ import '../styles/Table.scss'
 import ItemTableStr from './ItemTableStr'
 import IApplicationItem from '../interfaces/IApplicationItem'
 
-interface TableProps{
+interface ItemTableProps{
     data: Array<IApplicationItem>
 }
 
-const ItemTable = ({data}:TableProps) => {
+const ItemTable = ({data}:ItemTableProps) => {
     return (
         <>
             {data.length == 0 ?

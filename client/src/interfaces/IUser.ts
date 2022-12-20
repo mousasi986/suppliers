@@ -1,4 +1,5 @@
 export default interface IUser{
+    _id?: string,
     chatId:number,
     password:string,
     phone:string,

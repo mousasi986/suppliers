@@ -11,24 +11,6 @@ interface TableProps{
 const Table = ({data}:TableProps) => {
     const { store } = useContext(Context)
 
-    
-
-    // const [strings, setStrings] = useState<IApplication[]>([{
-    //     number: '1231321',
-    //     date: '06122000',
-    //     supplier: 'sanya',
-    //     barcode: '123123',
-    //     status: true
-    // },
-    // {
-    //     number: 'a456456',
-    //     date: '07122000',
-    //     supplier: 'sanya123',
-    //     barcode: '123123222',
-    //     status: false
-    // },
-    // ])
-
     return (
         <>
             {data.length == 0 ?
