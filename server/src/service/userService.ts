@@ -56,6 +56,14 @@ class UserService{
         return {...tokens,user:userDto}
      }
 
+    async getUsers(admin:boolean){
+        if(admin){
+            const users = await userModel.find()
+            return users
+        }
+        return {status:"401, вы не администратор"}
+    }
+
 }
 
 export default new UserService()

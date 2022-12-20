@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "sass": "^1.56.2"
   }
 }

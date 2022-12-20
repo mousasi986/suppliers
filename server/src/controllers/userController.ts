@@ -80,6 +80,11 @@ class UserController {
     }
   }
 
+  async getUsers(req:Request, res:Response, next:any){
+    const users = await userService.getUsers(req.body)
+    res.json(users)
+  }
+
   
 
 }

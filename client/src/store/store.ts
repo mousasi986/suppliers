@@ -112,4 +112,14 @@ export default class Store {
         }
     }
 
+
+    async getUsers(role:boolean){
+        try {
+            const response = await AuthService.getUsers(role)
+            return response.data      
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }

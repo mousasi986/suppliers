@@ -17,6 +17,7 @@ router.post('/createApplication',applicationController.createAplication,authMidd
 router.post('/createApplicationItem', applicationController.createApplicationItem,authMiddleware)
 router.get('/getApplications',applicationController.getApplications,authMiddleware)
 router.post('/getApplicationItems',applicationController.getApplicationItems,authMiddleware)
+router.post('/getUsers',userController.getUsers,authMiddleware)
 
 
 export default router

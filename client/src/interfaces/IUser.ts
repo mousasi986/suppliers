@@ -5,7 +5,7 @@ export default interface IUser{
     messageId:number
     // isAuth:boolean,
     // message?:string,
-    // categoryManager?:boolean,
-    // supplier?:boolean,
-    // isAdmin?:boolean
+    categoryManager?:boolean,
+    supplier?:boolean,
+    isAdmin?:boolean
 }
