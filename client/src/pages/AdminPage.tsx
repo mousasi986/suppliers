@@ -20,6 +20,8 @@ const AdminPage:React.FC = () => {
 
     ,[])
 
+    console.log('ebaniy github')
+
     const showCreateModal = () => {
         setShowForm(prev => {
             prev = !prev
