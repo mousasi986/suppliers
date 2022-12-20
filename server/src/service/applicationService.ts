@@ -1,10 +1,8 @@
 import ApiError from "../exceptions/apiError"
-import {Request,Response} from 'express'
 import applicationModel from "../models/applicationModel"
 import ApplicationDto from "../dtos/applicationDto"
 import applicationItemModel from "../models/applicationItemModel"
-import userModel from "src/models/userModel"
-import { ContextHandlerImpl } from "express-validator/src/chain"
+
 
 
 class ApplicationService{

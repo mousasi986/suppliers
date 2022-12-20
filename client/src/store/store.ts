@@ -15,6 +15,7 @@ export default class Store {
     isAuthLoading = false
 
 
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -113,13 +114,24 @@ export default class Store {
     }
 
 
-    async getUsers(role:boolean){
+    async getUsers(role:string){
         try {
             const response = await AuthService.getUsers(role)
             return response.data      
         } catch (error) {
             console.log(error)
         }
+    }
+
+    async setUserRole(data:object){
+        try {
+            const response = await AuthService.setUserRole(data)
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+        
+
     }
 
 }

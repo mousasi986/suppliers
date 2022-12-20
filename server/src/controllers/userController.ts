@@ -81,8 +81,17 @@ class UserController {
   }
 
   async getUsers(req:Request, res:Response, next:any){
-    const users = await userService.getUsers(req.body)
+    const users = await userService.getUsers(req.body.role)
     res.json(users)
+  }
+
+  async setUserRole(req:Request,res:Response,next:any){
+    try {
+      const role = await userService.setUserRole(req.body.id,req.body.role)
+      res.json(role)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   

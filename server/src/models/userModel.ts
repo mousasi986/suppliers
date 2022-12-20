@@ -18,7 +18,12 @@ const UserSchema = new Schema({
     messageId:{
         type:Number,
         required:true,
+    },
+    role:{
+        type:Schema.Types.ObjectId,
+        ref:"Role"
     }
+
 })
 
 export default model('User',UserSchema)

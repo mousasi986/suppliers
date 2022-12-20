@@ -4,6 +4,7 @@ import tokenService from "./tokenService"
 import UserDto from "../dtos/userDto"
 import ApiError from "../exceptions/apiError"
 import {Request,Response} from 'express'
+import roles from "../models/roles"
 
 class UserService{
     async login(phone:string,password:string,chatId:number,messageId:number){
@@ -47,7 +48,7 @@ class UserService{
         if(!userData || !tokenFromDB){
             throw ApiError.UnauthorizedError()
         }
-        const user  =  await userModel.findById(userData.id)
+        const user  =  await userModel.findById(userData.id).populate('role')
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})
 
@@ -56,13 +57,36 @@ class UserService{
         return {...tokens,user:userDto}
      }
 
-    async getUsers(admin:boolean){
-        if(admin){
-            const users = await userModel.find()
+    async getUsers(role:string){
+        if(role == "admin"){
+            const users = await userModel.find().populate('role')
             return users
         }
         return {status:"401, вы не администратор"}
     }
+
+    async setUserRole(id:string,role:object){
+        try {
+            const user = await userModel.findById(id)
+            if(user){
+                if(user.role == undefined){
+                    const userRole = await roles.create(role)
+                    .then(async(role) => {
+                    const updatedRole = await user.updateOne({$push:{role:role._id}})
+                    return updatedRole
+                })
+                }
+                const updateRole = await roles.updateOne({_id:user.role?._id},role)
+                
+            }
+            else{
+                throw ApiError.BadRequest("Пользователь не существует")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
 }
 

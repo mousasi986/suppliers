@@ -12,7 +12,11 @@ export default class AuthService{
         return $api.post('/logout')
     }
 
-    static async getUsers(role:boolean):Promise<AxiosResponse>{
-        return $api.post('/getUsers',{role})
+    static async getUsers(role:string):Promise<AxiosResponse>{
+        return $api.post('/getUsers',{role:role})
+    }
+
+    static async setUserRole(data:object):Promise<AxiosResponse>{
+        return $api.post('/setUserRole',data)
     }
 }
