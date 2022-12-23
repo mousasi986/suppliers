@@ -39,6 +39,7 @@ const ApplicationPage = () => {
             })
         })
     }
+    
     return (
         <div className='admin_main'>
             <h1>ID заявки: {id}</h1>
