@@ -9,7 +9,6 @@ import AuthPage from '../src/pages/AuthPage';
 
 
 const App: React.FC = () => {
-  const routes = useRoutes()
   const {store} = useContext(Context)
 
   useEffect(() => {
@@ -31,12 +30,45 @@ const App: React.FC = () => {
         <AuthPage/>
       )
     }
+    if(store.user.role.role == 'admin'){
+      console.log(store.user.role.role)
+      return(
+        <BrowserRouter>
+          <Header />
+          <div className="container">
+            {useRoutes.adminRouter()}
+          </div>
+        </BrowserRouter>
+      )
+    }
+    if(store.user.role.role == 'supplier'){
+      console.log(store.user.role.role)
+      return(
+        <BrowserRouter>
+          <Header />
+          <div className="container">
+            {useRoutes.supplierRouter()}
+          </div>
+        </BrowserRouter>
+      )
+    }
+    if(store.user.role.role == 'categoty_manager'){
+      console.log(store.user.role.role)
+      return(
+        <BrowserRouter>
+          <Header />
+          <div className="container">
+            {useRoutes.supplierRouter()}
+          </div>
+        </BrowserRouter>
+      )
+    }
     else{
       return (
         <BrowserRouter>
           <Header />
           <div className="container">
-            {routes}
+            <h1>Пошел нахуй!</h1>
           </div>
         </BrowserRouter>
       );

@@ -11,35 +11,69 @@ import MainPage from "../pages/MainPage";
 import SuppliersPage from "../pages/SuppliersPage";
 
 
-const useRoutes = () => {
-    const {store} = useContext(Context)
+export default class useRoutes{
+    // const {store} = useContext(Context)
 
-    // if(!store.isAuth){
-    //     return(
-    //         <Routes>
-    //             <Route path='/auth' element={<AuthPage/>}/>
-    //             <Route path='*' element={<Navigate replace to="/auth" />} />
-    //         </Routes>     
-    //     )
-    // }
-    // else{
-        return (
-            <Routes>
-                <Route path='/' element={<MainPage/>}/>
-                
-                {/* <Route path='/applications' element={<Table/>}/> */}
-                <Route path='/application/:id' element={<ApplicationPage/>}/>
+        static adminRouter = () => {
+            return (
+                <Routes>
+                    <Route path='/' element={<MainPage/>}/>
+                    
+                    {/* <Route path='/applications' element={<Table/>}/> */}
+                    <Route path='/application/:id' element={<ApplicationPage/>}/>
+    
+                    <Route path='/admin' element={<AdminPage/>}/>
+                    <Route path='/category_manager' element={<CategoryManagersPage/>}/>
+                    <Route path='/supplier' element={<SuppliersPage/>}/>
+                    
+                    <Route path='*' element={<Navigate replace to="/" />} />
+                </Routes>
+          )
+        }
+        static supplierRouter = () => {
+            return (
+                <Routes>
+                    <Route path='/' element={<MainPage/>}/>
+                    
+                    {/* <Route path='/applications' element={<Table/>}/> */}
+                    <Route path='/application/:id' element={<ApplicationPage/>}/>
+                    <Route path='/supplier' element={<SuppliersPage/>}/>
+                    
+                    <Route path='*' element={<Navigate replace to="/" />} />
+                </Routes>
+          )
+        }
 
-                <Route path='/admin' element={<AdminPage/>}/>
-                <Route path='/category_manager' element={<CategoryManagersPage/>}/>
-                <Route path='/supplier' element={<SuppliersPage/>}/>
+        static categoryManagerRouter = () => {
+            return (
+                <Routes>
+                    <Route path='/' element={<MainPage/>}/>
+                    
+                    {/* <Route path='/applications' element={<Table/>}/> */}
+                    <Route path='/application/:id' element={<ApplicationPage/>}/>
+                    <Route path='/category_manager' element={<CategoryManagersPage/>}/>
+                    
+                    <Route path='*' element={<Navigate replace to="/" />} />
+                </Routes>
+          )
+        }
+
+    
+            // <Routes>
+            //     <Route path='/' element={<MainPage/>}/>
                 
-                <Route path='*' element={<Navigate replace to="/" />} />
-            </Routes>
-      )
+            //     {/* <Route path='/applications' element={<Table/>}/> */}
+            //     <Route path='/application/:id' element={<ApplicationPage/>}/>
+
+            //     <Route path='/admin' element={<AdminPage/>}/>
+            //     <Route path='/category_manager' element={<CategoryManagersPage/>}/>
+            //     <Route path='/supplier' element={<SuppliersPage/>}/>
+                
+            //     <Route path='*' element={<Navigate replace to="/" />} />
+            // </Routes>
     // }
     
 
 }
 
-export default useRoutes
+
