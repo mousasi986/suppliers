@@ -9,7 +9,7 @@ import applicationService from '../service/applicationService'
 class ApplicationController{
     async createAplication(req:Request,res:Response,next:any){
         try{ 
-            const applicationData = await applicationService.createApplication(req.body)
+            const applicationData = await applicationService.createApplication(req.body.phone,req.body.data.number,req.body.data.date,req.body.data.supplier,req.body.data.company,req.body.data.category_manager,req.body.data.status,req.body.data.items)
             res.json(applicationData) 
         }catch(e){
             next(e)
@@ -28,7 +28,8 @@ class ApplicationController{
 
     async getApplications(req:Request,res:Response,next:any){
         try {
-            const applications = await applicationService.getApplications()
+            console.log(req.body)
+            const applications = await applicationService.getApplications(req.body.user)
             res.json(applications)
         } catch (error) {
             next(error)

@@ -94,9 +94,9 @@ export default class Store {
 
     }
 
-    async getApplications() {
+    async getApplications(user:string) {
         try {
-            const response = await axios.get(`${API_URL}/getApplications`, { withCredentials: true })
+            const response = await ApplicationService.getApplications(user)
             return response.data
         } catch (error) {
             console.log(error)

@@ -10,7 +10,6 @@ interface UserTableProps{
 
 const UserTable = ({data}:UserTableProps) => {
     const { store } = useContext(Context)
-
     return (
         <>
             {data.length == 0 ?

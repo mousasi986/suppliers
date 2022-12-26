@@ -1,5 +1,6 @@
 export default class ApplicationDto {
     id:number;
+    user:number;
     number:string;
     date:string;
     supplier:string;
@@ -10,6 +11,7 @@ export default class ApplicationDto {
 
     constructor(model:any){
         this.id = model._id
+        this.user = model.user
         this.number = model.number
         this.date = model.date
         this.supplier= model.supplier

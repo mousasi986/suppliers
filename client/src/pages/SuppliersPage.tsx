@@ -7,7 +7,8 @@ import IApplication from '../interfaces/IApplication'
 const SuppliersPage: React.FC = () => {
     const { store } = useContext(Context)
     const [showForm, setShowForm] = useState(false)
-
+    const u = JSON.stringify(store.user)
+    const user = JSON.parse(u)
     const showCreateModal = () => {
         setShowForm(prev => {
             prev = !prev
@@ -18,7 +19,7 @@ const SuppliersPage: React.FC = () => {
     const [applications, setApplications] = useState<IApplication[]>([])
 
     useEffect(() => {
-        store.getApplications().then(result => {
+        store.getApplications(user.id).then(result => {
             setApplications(prev => {
                 prev = result
                 return prev
@@ -27,7 +28,7 @@ const SuppliersPage: React.FC = () => {
     }, [])
 
     const refresh = () => {
-        store.getApplications().then(result => {
+        store.getApplications(user.id).then(result => {
             setApplications(prev => {
                 prev = result
                 return prev

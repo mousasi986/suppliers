@@ -17,6 +17,10 @@ export default class ApplicationService{
     static async getApplicationItems(id:string):Promise<AxiosResponse>{
         return $api.post('/getApplicationItems',{id})
     }
+    static async getApplications(user:string):Promise<AxiosResponse>{
+        return $api.post('/getApplications',{user})
+    }
+
 
 
 

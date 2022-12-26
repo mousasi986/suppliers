@@ -2,15 +2,24 @@ import ApiError from "../exceptions/apiError"
 import applicationModel from "../models/applicationModel"
 import ApplicationDto from "../dtos/applicationDto"
 import applicationItemModel from "../models/applicationItemModel"
+import userModel from "../models/userModel"
+import UserDto from "../dtos/userDto"
 
 
 
 class ApplicationService{
-    async createApplication(body:object){
+    async createApplication(phone:string,number:string,date:string,supplier:string,company:string,category_manager:string,status:string,items:[]){
         try {
-            const application = await applicationModel.create(body)
-            const  applicaionDto = new ApplicationDto(application)
-            return{application:applicaionDto}
+            const user = await userModel.findOne({phone})
+            if(user){
+                const userDto = new UserDto(user)
+                console.log(userDto.id)
+                const application = await applicationModel.create({user:userDto.id,number,date,supplier,company,category_manager,status,items})
+                const  applicaionDto = new ApplicationDto(application)
+                return{application:applicaionDto}
+            }
+            
+            
             
         } catch (error) {
             return error
@@ -37,8 +46,8 @@ class ApplicationService{
         
         
     }
-    async getApplications(){
-        const applications = await applicationModel.find() 
+    async getApplications(user:string){
+        const applications = await applicationModel.find({user}) 
         return applications
     }
 
