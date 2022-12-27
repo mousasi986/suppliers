@@ -30,8 +30,13 @@ const CreateApplicationWindow = (props: any) => {
     })
 
     const submitHandler = () => {
-        // store.addApplication(main).then(()=>{props.refresh().then(()=>{props.show()})})
-        store.addApplication(main).then(()=>{props.refresh()})
+        const data ={
+            phone: store.user.phone,
+            data : {
+                ...main
+            }
+        }
+        store.addApplication(data).then(()=>{props.refresh()})
         props.show()
     }
 
