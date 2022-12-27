@@ -52,13 +52,13 @@ const App: React.FC = () => {
         </BrowserRouter>
       )
     }
-    if(store.user.role.role == 'categoty_manager'){
+    if(store.user.role.role == 'category_manager'){
       console.log(store.user.role.role)
       return(
         <BrowserRouter>
           <Header />
           <div className="container">
-            {useRoutes.supplierRouter()}
+            {useRoutes.categoryManagerRouter()}
           </div>
         </BrowserRouter>
       )

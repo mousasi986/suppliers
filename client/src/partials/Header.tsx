@@ -57,7 +57,7 @@ const Header = () => {
         <></>
       }
 
-      {store.user.role.role == 'categoty_manager' ?
+      {store.user.role.role == 'category_manager' ?
         <header>
           <div className='logo'>
             <Link to='/'>Suppliers</Link>
