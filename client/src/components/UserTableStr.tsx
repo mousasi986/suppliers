@@ -28,18 +28,11 @@ const UserTableStr = ({ data }: ITableStrProps) => {
             sendRequest(newData)
             return newData
         })
-
-
     }
 
     const sendRequest = (role: object) => {
         store.setUserRole(role)
     }
-
-    // useEffect(() => {
-    //     if role != ''
-
-    // }, [role])
 
     return (
         <>
@@ -48,10 +41,10 @@ const UserTableStr = ({ data }: ITableStrProps) => {
                 <td>{data.chatId}</td>
                 <td>{data.phone}</td>
                 <td>
-                    <select name="role" id="role" onChange={changeRoleHandler}>
+                    <select defaultValue={data.role.role} name="role" id="role" onChange={changeRoleHandler}>
                         <option value="admin">Администратор</option>
-                        <option value="supplier">Поставщик</option>
                         <option value="category_manager">Категорийный менеджер</option>
+                        <option value="supplier">Поставщик</option>
                     </select>
                 </td>
             </tr>
