@@ -41,7 +41,7 @@ const UserTableStr = ({ data }: ITableStrProps) => {
                 <td>{data.chatId}</td>
                 <td>{data.phone}</td>
                 <td>
-                    {data.role.role != undefined ?
+                    {data.role != undefined ?
                         <select defaultValue={data.role.role} name="role" id="role" onChange={changeRoleHandler}>
                             <option value="admin">Администратор</option>
                             <option value="category_manager">Категорийный менеджер</option>
