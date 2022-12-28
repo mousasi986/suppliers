@@ -134,4 +134,13 @@ export default class Store {
 
     }
 
+    async getApplicationsCategoryManager(category_manager:string) {
+        try {
+            const response = await ApplicationService.getApplicationsCategoryManager(category_manager)
+            return response.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }

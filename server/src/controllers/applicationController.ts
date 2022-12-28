@@ -46,6 +46,16 @@ class ApplicationController{
         }
         
     }
+
+    async getApplicationsCategoryManager(req:Request,res:Response,next:any){
+        try {
+            console.log(req.body)
+            const applications = await applicationService.getApplicationsCategoryManager(req.body.category_manager)
+            res.json(applications)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new ApplicationController()

@@ -55,6 +55,12 @@ class ApplicationService{
         const application =  await applicationModel.findById(id).populate("items")
         return application
     }
+
+    async getApplicationsCategoryManager(category_manager:string){
+        const applications = await applicationModel.find({category_manager}) 
+        return applications
+    }
 }
+
 
 export default new ApplicationService()
