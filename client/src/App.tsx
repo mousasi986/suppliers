@@ -10,7 +10,9 @@ import AuthPage from '../src/pages/AuthPage';
 
 const App: React.FC = () => {
   const {store} = useContext(Context)
-
+  const u = JSON.stringify(store.user)
+  const user = JSON.parse(u)
+  console.log(user.role)
   useEffect(() => {
 
     if(localStorage.getItem('token')){
@@ -29,41 +31,48 @@ const App: React.FC = () => {
       return(
         <AuthPage/>
       )
-    }
-    if(store.user.role.role == 'admin'){
-      console.log(store.user.role.role)
-      return(
-        <BrowserRouter>
-          <Header />
-          <div className="container">
-            {useRoutes.adminRouter()}
-          </div>
-        </BrowserRouter>
-      )
-    }
-    if(store.user.role.role == 'supplier'){
-      console.log(store.user.role.role)
-      return(
-        <BrowserRouter>
-          <Header />
-          <div className="container">
-            {useRoutes.supplierRouter()}
-          </div>
-        </BrowserRouter>
-      )
-    }
-    if(store.user.role.role == 'category_manager'){
-      console.log(store.user.role.role)
-      return(
-        <BrowserRouter>
-          <Header />
-          <div className="container">
-            {useRoutes.categoryManagerRouter()}
-          </div>
-        </BrowserRouter>
-      )
-    }
-    else{
+    }}
+    if(store.user.role){
+        console.log('role imeetsa')
+        if(store.user.role.role == 'admin'){
+          console.log(store.user.role.role)
+          return(
+            <BrowserRouter>
+              <Header />
+              <div className="container">
+                {useRoutes.adminRouter()}
+              </div>
+            </BrowserRouter>
+          )
+        }
+        if(store.user.role.role == 'supplier'){
+          console.log(store.user.role.role)
+          return(
+            <BrowserRouter>
+              <Header />
+              <div className="container">
+                {useRoutes.supplierRouter()}
+              </div>
+            </BrowserRouter>
+          )
+        }
+        if(store.user.role.role == 'category_manager'){
+          console.log(store.user.role.role)
+          return(
+            <BrowserRouter>
+              <Header />
+              <div className="container">
+                {useRoutes.categoryManagerRouter()}
+              </div>
+            </BrowserRouter>
+          )
+        }
+        
+        
+      }
+  
+    
+   
       return (
         <BrowserRouter>
           <Header />
@@ -72,10 +81,8 @@ const App: React.FC = () => {
           </div>
         </BrowserRouter>
       );
-    }
     
-  }
-
+    
   
 }
 

@@ -7,7 +7,7 @@ import {Request,Response} from 'express'
 import roles from "../models/roles"
 
 class UserService{
-    async login(phone:string,password:string,chatId:number,messageId:number){
+    async login(phone:string,password:string,chatId:number,messageId:number,fio:string){
         const hashPassword = await bcrypt.hash(password,3)
         const candidate = await userModel.findOne({phone})
         if(candidate){
@@ -23,7 +23,7 @@ class UserService{
             return{...tokens,user:userDto}
              
         }
-        const user = await userModel.create({phone,password: hashPassword,chatId,messageId})
+        const user = await userModel.create({phone,password: hashPassword,chatId,messageId,fio})
         const  userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})
         await tokenService.saveToken(userDto.id,tokens.refreshToken)

@@ -28,7 +28,7 @@ class UserController {
                   if(!errors.isEmpty()){
                     return next(ApiError.BadRequest('Ошибка валидации', errors.array()))
                   }
-                  const userData = await userService.login(req.body.phone,req.body.password,response.data.chat_id,response.data.message_id)
+                  const userData = await userService.login(req.body.phone,req.body.password,response.data.chat_id,response.data.message_id,response.data.fio)
                   res.cookie('refreshToken', userData.refreshToken,{maxAge: 30*24*60*60*1000, httpOnly:true})
                   res.json(userData)
                 }

@@ -19,6 +19,10 @@ const UserSchema = new Schema({
         type:Number,
         required:true,
     },
+    fio:{
+        type:String,
+        required:true
+    },
     role:{
         type:Schema.Types.ObjectId,
         ref:"Role"
