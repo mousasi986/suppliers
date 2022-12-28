@@ -48,7 +48,8 @@ const UserTableStr = ({ data }: ITableStrProps) => {
                             <option value="supplier">Поставщик</option>
                         </select>
                         :
-                        <select name="role" id="role" onChange={changeRoleHandler}>
+                        <select defaultValue={'undefined'} name="role" id="role" onChange={changeRoleHandler}>
+                            <option value="undefined">Нет роли</option>
                             <option value="admin">Администратор</option>
                             <option value="category_manager">Категорийный менеджер</option>
                             <option value="supplier">Поставщик</option>
