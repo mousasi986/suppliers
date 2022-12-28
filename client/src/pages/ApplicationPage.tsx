@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import '../styles/AdminPage.scss'
+import '../styles/AllUsersPage.scss'
 import CreateItemWindow from '../components/CreateItemWindow'
 import { Context } from '../index'
 import IApplicationItem from '../interfaces/IApplicationItem'
@@ -41,7 +41,7 @@ const ApplicationPage = () => {
     }
     
     return (
-        <div className='admin_main'>
+        <div className='all_users_main'>
             <h1>ID заявки: {id}</h1>
             <button onClick={showCreateModal}>Добавить позицию</button>
             {showForm ?

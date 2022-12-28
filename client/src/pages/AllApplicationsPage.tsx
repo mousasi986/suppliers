@@ -3,9 +3,9 @@ import CreateApplicationWindow from '../components/CreateApplicationWindow'
 import Table from '../components/Table'
 import { Context } from '../index'
 import IApplication from '../interfaces/IApplication'
-import '../styles/SupplierPage.scss'
+import '../styles/AllApplicationsPage.scss'
 
-const SuppliersPage: React.FC = () => {
+const AllApplicationsPage: React.FC = () => {
     const { store } = useContext(Context)
     const [showForm, setShowForm] = useState(false)
     const u = JSON.stringify(store.user)
@@ -38,12 +38,11 @@ const SuppliersPage: React.FC = () => {
     }
 
     return (
-        <div className='supplier_main'>
-            <h1>Поставщик</h1>
+        <div className='all_applications_main'>
+            <h1>Все заявки</h1>
             <button onClick={showCreateModal}>Создать</button>
             {showForm ?
                 <CreateApplicationWindow refresh={refresh} show={showCreateModal} />
-                // <CreateItemWindow show={showCreateModal}/>
                 :
                 <></>
             }
@@ -52,4 +51,4 @@ const SuppliersPage: React.FC = () => {
     )
 }
 
-export default SuppliersPage
+export default AllApplicationsPage

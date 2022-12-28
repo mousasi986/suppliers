@@ -4,6 +4,7 @@ export default interface IUser{
     password:string,
     phone:string,
     messageId:number,
+    fio: string,
     role:{
         role:string,
         _id:string,
