@@ -76,8 +76,9 @@ const App: React.FC = () => {
       return (
         <BrowserRouter>
           <Header />
-          <div className="container">
-            <h1>Пошел нахуй!</h1>
+          <div className="undefinedRole">
+            <h1>Ваш аккаунт еще не прошел проверку администратором</h1>
+            <a href="https://t.me/eterlate">Обратная связь</a>
           </div>
         </BrowserRouter>
       );
