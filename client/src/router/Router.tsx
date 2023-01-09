@@ -23,8 +23,6 @@ export default class useRoutes{
                     <Route path='/application/:id' element={<ApplicationPage/>}/>
     
                     <Route path='/users' element={<AllUsersPage/>}/>
-                    <Route path='/category_manager' element={<CategoryManagersPage/>}/>
-                    <Route path='/supplier' element={<SuppliersPage/>}/>
                     
                     <Route path='*' element={<Navigate replace to="/" />} />
                 </Routes>

@@ -19,6 +19,7 @@ const UserTable = ({data}:UserTableProps) => {
                     <tbody>
                         <tr>
                             <th>ID</th>
+                            <th>ФИО</th>
                             <th>Chat ID</th>
                             <th>Номер телефона</th>
                             <th>Роль</th>

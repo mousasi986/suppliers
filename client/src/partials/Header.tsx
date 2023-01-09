@@ -20,8 +20,8 @@ const Header = () => {
                   <div className='main'>
                     <Link to='/applications'>Все заявки</Link>
                     <Link to='/users'>Все пользователи</Link>
-                    <Link to='/category_manager'>Категорийный</Link>
-                    <Link to='/supplier'>Поставщик</Link>
+                    {/* <Link to='/category_manager'>Категорийный</Link>
+                    <Link to='/supplier'>Поставщик</Link> */}
                   </div>
                   <div className='header_auth'>
                     {store.isAuth ?

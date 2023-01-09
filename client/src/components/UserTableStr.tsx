@@ -38,6 +38,7 @@ const UserTableStr = ({ data }: ITableStrProps) => {
         <>
             <tr>
                 <td>{data._id}</td>
+                <td>{data.fio}</td>
                 <td>{data.chatId}</td>
                 <td>{data.phone}</td>
                 <td>
