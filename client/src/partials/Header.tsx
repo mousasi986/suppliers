@@ -19,7 +19,7 @@ const Header = () => {
                   </div>
                   <div className='main'>
                     <Link to='/applications'>Все заявки</Link>
-                    <Link to='/admin'>Админ</Link>
+                    <Link to='/users'>Все пользователи</Link>
                     <Link to='/category_manager'>Категорийный</Link>
                     <Link to='/supplier'>Поставщик</Link>
                   </div>

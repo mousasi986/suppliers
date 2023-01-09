@@ -20,7 +20,6 @@ const ApplicationPage = () => {
             return prev
         })
     }
-
     useEffect(() => {
         store.getApplicationItems(id).then(result => {
             if (result == null){

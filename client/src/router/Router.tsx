@@ -22,7 +22,7 @@ export default class useRoutes{
                     <Route path='/applications' element={<AllApplicationsPage/>}/>
                     <Route path='/application/:id' element={<ApplicationPage/>}/>
     
-                    <Route path='/admin' element={<AllUsersPage/>}/>
+                    <Route path='/users' element={<AllUsersPage/>}/>
                     <Route path='/category_manager' element={<CategoryManagersPage/>}/>
                     <Route path='/supplier' element={<SuppliersPage/>}/>
                     

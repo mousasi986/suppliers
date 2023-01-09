@@ -39,15 +39,25 @@ const SuppliersPage: React.FC = () => {
 
     return (
         <div className='supplier_main'>
-            <h1>Поставщик</h1>
-            <button onClick={showCreateModal}>Создать</button>
+            {applications.length == 0 ?
+                <>
+                    <h1>У вас нет созданных заявок</h1>
+                    <button onClick={showCreateModal}>Создать</button>
+                </>
+                :
+                <>
+                    <h1>Ваши заявки</h1>
+                    <button onClick={showCreateModal}>Создать</button>
+                    <Table data={applications} />
+                </>
+            }
             {showForm ?
                 <CreateApplicationWindow refresh={refresh} show={showCreateModal} />
                 // <CreateItemWindow show={showCreateModal}/>
                 :
                 <></>
             }
-            <Table data={applications} />
+
         </div>
     )
 }

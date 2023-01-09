@@ -1,9 +1,18 @@
 @import '../index.scss';
 
 .supplier_main{
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    button{
+        width: 100px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        background-color: white;
+    }
+    h1{
+        margin: 20px;
+    }
 }
