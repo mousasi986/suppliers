@@ -56,6 +56,15 @@ class ApplicationController{
             next(error)
         }
     }
+
+    async getAllApplications(req: Request, res: Response, next: any){
+        try {
+            const applications = await applicationService.getAllApplications()
+            res.json(applications)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new ApplicationController()

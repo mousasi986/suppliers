@@ -23,6 +23,9 @@ export default class ApplicationService{
     static async getApplicationsCategoryManager(category_manager:string):Promise<AxiosResponse>{
         return $api.post('/getApplicationsCategoryManager',{category_manager})
     }
+    static async getAllApplications():Promise<AxiosResponse>{
+        return $api.get('/getAllApplications')
+    }
 
 
 

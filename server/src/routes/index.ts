@@ -20,6 +20,7 @@ router.post('/getApplicationItems',applicationController.getApplicationItems,aut
 router.post('/getUsers',userController.getUsers,authMiddleware)
 router.post('/setUserRole',userController.setUserRole,authMiddleware)
 router.post('/getApplicationsCategoryManager',applicationController.getApplicationsCategoryManager,authMiddleware)
+router.get('/getAllApplications',applicationController.getAllApplications,authMiddleware)
 
 
 export default router

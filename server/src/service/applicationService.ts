@@ -60,6 +60,11 @@ class ApplicationService{
         const applications = await applicationModel.find({category_manager}) 
         return applications
     }
+
+    async getAllApplications(){
+        const applications = await applicationModel.find()
+        return applications
+    }
 }
 
 

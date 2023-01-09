@@ -142,5 +142,15 @@ export default class Store {
             console.log(error)
         }
     }
+    async getAllApplications(){
+        try {
+            const response = await ApplicationService.getAllApplications()
+            return response.data
+
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
 
 }
