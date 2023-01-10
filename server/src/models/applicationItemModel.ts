@@ -43,7 +43,18 @@ const ApplicationItemSchema = new Schema({
     },
     photo:{
         type:String,
-    }
+    },
+    fields:[
+        {
+            key:{
+                type:String
+            },
+            value:{
+                type:String
+            }
+
+        }
+    ]
 })
 
 export default model('ApplicationItem',ApplicationItemSchema)

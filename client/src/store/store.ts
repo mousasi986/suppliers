@@ -146,7 +146,6 @@ export default class Store {
         try {
             const response = await ApplicationService.getAllApplications()
             return response.data
-
         } catch (error) {
             console.log(error)
         }
