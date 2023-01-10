@@ -8,9 +8,24 @@ interface EditItemProps {
     itemInfo: IApplicationItem,
     show: VoidFunction
 }
+interface Field {
+    key: string,
+    value: string
+}
 
 const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
     const dadata = process.env.REACT_APP_DADATA_TOKEN
+
+    useEffect(() => {
+        const close = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                show()
+            }
+        }
+        window.addEventListener('keydown', close)
+        return () => window.removeEventListener('keydown', close)
+    }, [])
+
     const [item, setItem] = useState({
         barcode: itemInfo.barcode,
         name: itemInfo.name,
@@ -25,17 +40,16 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
         photo: itemInfo.photo
     })
 
-    useEffect(() => {
-        const close = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                show()
-            }
-        }
-        window.addEventListener('keydown', close)
-        return () => window.removeEventListener('keydown', close)
-    }, [])
+    //States with 1 field and with array of fields
+    const [field, setField] = useState<Field>({
+        key: '',
+        value: ''
+    })
+    const [fields, setFields] = useState<Field[]>([field])
 
 
+
+    //Edit existing fields of item
     const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setItem({ ...item, [e.target.name]: e.target.value })
     }
@@ -46,11 +60,22 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
         setItem({ ...item, country: suggestion.unrestricted_value })
     }
 
-    const addFieldHandler = () => {
-        show()
-        console.log(item)
+
+    //New fields handlers
+    const changeFieldHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setField({ ...field, [e.target.name]: e.target.value })
     }
-    
+    const addFieldHandler = () => {
+        setFields([...fields, field])
+        setField({ key: '', value: '' })
+    }
+
+    //Submiting changes
+    const submitChangeItem = () => {
+        show()
+        console.log(item, fields)
+    }
+
     return (
         <div className='dark_modal'>
             <div className='editItemWindow'>
@@ -67,7 +92,6 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                                 <option value='20'>20</option>
                             </select>
                         </div>
-
                         <Input settings={{ label: 'Торговая марка', name: 'trademark', type: 'text', value: item.trademark }} changeHandler={changeInfoHandler} />
 
                         {item.country != undefined ?
@@ -79,8 +103,6 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                             </div>
                         }
 
-                        {/* <Input settings={{ label: 'Страна', name: 'country', type: 'text' }} changeHandler={changeInfoHandler} /> */}
-                        {/* <Input settings={{ label: 'Маркировка', name: 'marking', type: 'text' }} changeHandler={changeInfoHandler} /> */}
                         <div className='customInp'>
                             <label style={{ width: '180px', height: '22px', overflow: 'hidden' }} htmlFor="marking">Маркировка</label>
                             <select defaultValue={item.marking} style={{ height: '24px' }} name='marking' onChange={changeSelectHandler}>
@@ -98,8 +120,19 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                         <Input settings={{ label: 'Фото', name: 'photo', type: 'text', value: item.photo }} changeHandler={changeInfoHandler} />
                     </div>
                 </div>
+                <h2>Дополнительные поля</h2>
+                <div className='newFields'>
+                    {fields.map(el =>
+                        <div className='newFieldsBox'>
+                            <Input settings={{ label: 'Название', name: 'key', type: 'text' }} changeHandler={changeFieldHandler} />
+                            <Input settings={{ label: 'Значение', name: 'value', type: 'text' }} changeHandler={changeFieldHandler} />
+                        </div>
+                    )}
+                </div>
+
                 <div className='buttonsBox'>
-                    <button onClick={addFieldHandler}>Изменить</button>
+                    <button onClick={submitChangeItem}>Применить</button>
+                    <button onClick={addFieldHandler}>Добавить поле</button>
                     <button onClick={show}>Закрыть</button>
                 </div>
             </div>

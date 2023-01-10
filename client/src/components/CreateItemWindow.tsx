@@ -8,6 +8,8 @@ import ReactDadataBox from 'react-dadata-box';
 
 const CreateItemWindow = (props: any) => {
     const { store } = useContext(Context)
+    const dadata = process.env.REACT_APP_DADATA_TOKEN
+
     useEffect(() => {
         const close = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -78,7 +80,7 @@ const CreateItemWindow = (props: any) => {
                         <Input settings={{ label: 'Торговая марка', name: 'trademark', type: 'text' }} changeHandler={changeInfoHandler} />
                         <div className='customInp'>
                             <label>Страна</label>
-                            <ReactDadataBox token="0784075aabbbf76e37f7d3b9fcf20d393da37b73" query="" type='country' onChange={changeDadataHandler} />
+                            <ReactDadataBox token={dadata!} query="" type='country' onChange={changeDadataHandler} />
                         </div>
                         {/* <Input settings={{ label: 'Страна', name: 'country', type: 'text' }} changeHandler={changeInfoHandler} /> */}
                         {/* <Input settings={{ label: 'Маркировка', name: 'marking', type: 'text' }} changeHandler={changeInfoHandler} /> */}
