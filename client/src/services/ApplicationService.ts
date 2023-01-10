@@ -26,9 +26,10 @@ export default class ApplicationService{
     static async getAllApplications():Promise<AxiosResponse>{
         return $api.get('/getAllApplications')
     }
-
-
-
-
-
+    static async updateApplicationStatus(data:object):Promise<AxiosResponse>{
+        return $api.post('/updateApplicationStatus',data)
+    }
+    static async updateApplicationItem(data:object):Promise<AxiosResponse>{
+        return $api.post('/updateApplicationItem',data)
+    }
 }

@@ -151,5 +151,20 @@ export default class Store {
         }
         
     }
+    async updateApplicationStatus(data:object){
+        try {
+            const response = await ApplicationService.updateApplicationStatus(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async updateApplicationItem(data:object){
+        try {
+            const response = await ApplicationService.updateApplicationItem(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 }

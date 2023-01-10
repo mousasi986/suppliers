@@ -64,6 +64,23 @@ class ApplicationService{
         const applications = await applicationModel.find()
         return applications
     }
+    async updateApplicationStatus(id:string,status:string){
+        const application = await applicationModel.findById(id)
+        if(application){
+            const updated = await application.updateOne({
+                $set:{status:status}
+            })
+            return updated
+        }
+        else{
+            throw ApiError.BadRequest("Заявка не существует")
+        }
+    }
+
+    async updateApplicationItem(id:string,body:object){
+        const item = await applicationItemModel.findByIdAndUpdate(id,body)
+        return item
+    }
 }
 
 

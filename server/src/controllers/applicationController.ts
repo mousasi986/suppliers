@@ -64,6 +64,23 @@ class ApplicationController{
             next(error)
         }
     }
+
+    async updateApplicationStatus(req:Request,res:Response,next:any){
+        try {
+            const application = await applicationService.updateApplicationStatus(req.body.id,req.body.status)
+            res.json(application)
+        } catch (error) {
+            next(error)
+        }
+    }
+    async updateApplicationItem(req:Request,res:Response,next:any){
+        try {
+            const item = await applicationService.updateApplicationItem(req.body.id,req.body.data)
+            res.json(item)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new ApplicationController()
