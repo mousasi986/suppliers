@@ -16,7 +16,7 @@ const Input = ({settings, changeHandler}: IInputProps) => {
     return (
         <div className='customInp'>
             <label htmlFor={settings.name}>{settings.label}</label>
-            <input type={settings.type} name={settings.name} onChange={changeHandler} />
+            <input type={settings.type} name={settings.name} onChange={changeHandler} value={settings.value}/>
         </div>
     )
 }

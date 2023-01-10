@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import IUser from '../interfaces/IUser'
-import React, { ChangeEvent, useState, useEffect, useContext } from 'react'
+import React, { ChangeEvent, useState, useContext } from 'react'
 import { Context } from '../index'
 
 interface ITableStrProps {

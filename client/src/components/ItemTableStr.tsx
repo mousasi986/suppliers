@@ -1,14 +1,29 @@
 import IApplicationItem from '../interfaces/IApplicationItem'
-
+import React, { useState } from 'react'
+import EditItemWindow from './EditItemWindow'
 interface IItemTableStrProps {
     data: IApplicationItem
 }
 
-const ItemTableStr = ({data}:IItemTableStrProps) => {
+const ItemTableStr = ({ data }: IItemTableStrProps) => {
+    const [showEdit, setShowEdit] = useState(false)
+
+    const showEditModal = () => {
+        setShowEdit(prev => {
+            prev = !prev
+            return prev
+        })
+    }
 
     return (
         <>
-            <tr>
+            {showEdit ?
+            
+                <EditItemWindow show={showEditModal} itemInfo={data}/>
+                :
+                <></>
+            }
+            <tr onClick={showEditModal}>
                 <td>{data.barcode}</td>
                 <td>{data.name}</td>
                 <td>{data.nds}</td>
@@ -20,6 +35,7 @@ const ItemTableStr = ({data}:IItemTableStrProps) => {
                 <td>{data.size}</td>
                 <td>{data.weight}</td>
                 <td>{data.photo}</td>
+                <td>...</td>
             </tr>
         </>
     )

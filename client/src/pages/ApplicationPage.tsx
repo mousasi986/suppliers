@@ -11,8 +11,11 @@ const ApplicationPage = () => {
     const id = useParams().id!
 
     const { store } = useContext(Context)
+
     const [showForm, setShowForm] = useState(false)
     const [items, setItems] = useState<IApplicationItem[]>([])
+
+    const user_role = store.user.role.role
 
     const showCreateModal = () => {
         setShowForm(prev => {
@@ -20,9 +23,10 @@ const ApplicationPage = () => {
             return prev
         })
     }
+
     useEffect(() => {
         store.getApplicationItems(id).then(result => {
-            if (result == null){
+            if (result == null) {
                 return
             }
             setItems(() => {
@@ -38,20 +42,29 @@ const ApplicationPage = () => {
             })
         })
     }
-    
+
     return (
         <div className='all_users_main'>
             <h1>ID заявки: {id}</h1>
-            <button onClick={showCreateModal}>Добавить позицию</button>
+            {user_role != 'category_manager' ?
+                <button onClick={showCreateModal}>Добавить позицию</button>
+                :
+                <></>
+            }
+
             {showForm ?
                 <CreateItemWindow id={id} show={showCreateModal} refresh={refresh} />
                 :
                 <></>
             }
+
             {items.length == 0 ?
                 <h1>Нет позиций</h1>
                 :
-                <ItemTable data={items} />
+                <>
+                    <h1>Позиции:</h1>
+                    <ItemTable data={items} />
+                </>
             }
 
         </div>

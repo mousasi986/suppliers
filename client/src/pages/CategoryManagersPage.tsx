@@ -10,8 +10,16 @@ const CategoryManagersPage:React.FC = () => {
 
     useEffect(() => {
         store.getApplicationsCategoryManager(store.user.fio).then(result => {
+            let supplierData:IApplication[] = []
+
+            result.forEach((el:IApplication) => {
+                if (el.status != 'Черновик'){
+                    supplierData.push(el)
+                }
+            });
+
             setApplications(prev => {
-                prev = result
+                prev = supplierData
                 return prev
             })
         })

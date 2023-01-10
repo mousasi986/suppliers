@@ -13,7 +13,6 @@ const AllUsersPage:React.FC = () => {
     useEffect(() => {
        store.getUsers(store.user.role.role).then(res => {
         setUsers(res)
-        
        })
     },[])
 
