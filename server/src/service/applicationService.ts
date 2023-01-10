@@ -13,7 +13,6 @@ class ApplicationService{
             const user = await userModel.findOne({phone})
             if(user){
                 const userDto = new UserDto(user)
-                console.log(userDto.id)
                 const application = await applicationModel.create({user:userDto.id,number,date,supplier,company,category_manager,status,items})
                 const  applicaionDto = new ApplicationDto(application)
                 return{application:applicaionDto}
@@ -27,7 +26,7 @@ class ApplicationService{
         
     }
     async createApplicationItem(id:string,data:object){
-        // console.log(id,data)
+        
         const application  = await applicationModel.findById(id) 
         if(application){
             const applicationItem = await applicationItemModel.create(data)

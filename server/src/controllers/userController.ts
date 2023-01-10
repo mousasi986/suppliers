@@ -19,7 +19,6 @@ class UserController {
       
       axios(config)
       .then(async function (response) {
-              console.log(response.data.phone)
             if(req.body.phone === response.data.phone){
               if(req.body.password == response.data.password){
                 response.data = {...response.data, isAuth:true}
@@ -38,7 +37,6 @@ class UserController {
                 
             }
             else{
-              console.log(response.data.message)
                 res.json({message:'Не правильный пароль',isAuth:false})
             }
 

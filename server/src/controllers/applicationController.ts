@@ -28,7 +28,7 @@ class ApplicationController{
 
     async getApplications(req:Request,res:Response,next:any){
         try {
-            console.log(req.body)
+            
             const applications = await applicationService.getApplications(req.body.user)
             res.json(applications)
         } catch (error) {
@@ -49,7 +49,6 @@ class ApplicationController{
 
     async getApplicationsCategoryManager(req:Request,res:Response,next:any){
         try {
-            console.log(req.body)
             const applications = await applicationService.getApplicationsCategoryManager(req.body.category_manager)
             res.json(applications)
         } catch (error) {
