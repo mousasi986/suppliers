@@ -81,6 +81,7 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
             <div className='editItemWindow'>
                 <h2>Изменить позицию</h2>
                 <div className='dopInfo'>
+
                     <div className='dopInfoBox'>
                         <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text', value: item.barcode }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Имя', name: 'name', type: 'text', value: item.name }} changeHandler={changeInfoHandler} />
@@ -131,9 +132,9 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                 </div>
 
                 <div className='buttonsBox'>
-                    <button onClick={submitChangeItem}>Применить</button>
-                    <button onClick={addFieldHandler}>Добавить поле</button>
-                    <button onClick={show}>Закрыть</button>
+                    <button onClick={submitChangeItem} className="button-4" style={{width:'120px'}}>Применить</button>
+                    <button onClick={addFieldHandler} className="button-4" style={{width:'150px'}}>Добавить поле</button>
+                    <button onClick={show} className="button-4" style={{width:'120px'}}>Закрыть</button>
                 </div>
             </div>
         </div>

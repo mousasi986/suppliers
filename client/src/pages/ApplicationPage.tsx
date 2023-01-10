@@ -47,7 +47,7 @@ const ApplicationPage = () => {
         <div className='all_users_main'>
             <h1>ID заявки: {id}</h1>
             {user_role != 'category_manager' ?
-                <button onClick={showCreateModal}>Добавить позицию</button>
+                <button onClick={showCreateModal} className="button-4" style={{width:'160px'}}>Добавить позицию</button>
                 :
                 <></>
             }

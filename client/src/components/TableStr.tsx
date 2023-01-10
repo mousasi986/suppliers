@@ -19,13 +19,7 @@ const TableStr = ({ data }: ITableStrProps) => {
     const changeStatusHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setStatus(prev => {
             let newData = prev
-            // newData = {
-            //     id: data._id!,
-            //     role: {
-            //         role: e.target.value
-            //     }
-            // }
-            // sendRequest(newData)
+            
             return newData
         })
     }
