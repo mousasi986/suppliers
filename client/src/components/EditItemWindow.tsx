@@ -78,7 +78,6 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
     const changeFieldHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setField(prev => {
             let newData = { ...prev, [e.target.name]: e.target.value }
-            console.log(newData)
             return newData
         })
     }
@@ -89,7 +88,6 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                 let newData = [...prev]
                 let index = existingFields.findIndex(el => el._id == id)
                 newData[index].key = e.target.value
-                console.log(newData[index])
                 return newData
             })
         } else {
@@ -97,7 +95,6 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                 let newData = [...prev]
                 let index = existingFields.findIndex(el => el._id == id)
                 newData[index].value = e.target.value
-                console.log(newData[index])
                 return newData
             })
         }
@@ -115,8 +112,13 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
     //Submiting changes
     const submitChangeItem = () => {
         show()
-    
-        let allFields = [...fields, existingFields]
+        let allFields = []
+        if(existingFields.length != 0){
+            allFields = [...fields, existingFields]
+        }else{
+            allFields = [...fields]
+        }
+        
         
         let data = {
             id: itemInfo._id,
@@ -125,6 +127,7 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                 fields: allFields
             }
         }
+        console.log(JSON.stringify(data))
         store.updateApplicationItem(data)
     }
 
