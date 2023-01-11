@@ -18,8 +18,7 @@ const TableStr = ({ data }: ITableStrProps) => {
 
     const changeStatusHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setStatus(prev => {
-            let newData = prev
-            
+            let newData = prev 
             return newData
         })
     }

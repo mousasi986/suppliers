@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState, useContext } from 'react'
 import '../styles/EditItemWindow.scss'
 import Input from './Input'
 import ReactDadataBox from 'react-dadata-box';
 import IApplicationItem from '../interfaces/IApplicationItem';
-
+import { Context } from '../index'
 interface EditItemProps {
     itemInfo: IApplicationItem,
     show: VoidFunction
@@ -13,8 +13,14 @@ interface Field {
     value: string
 }
 
+interface ExistingField {
+    key: string,
+    value: string,
+    _id: string
+}
 const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
     const dadata = process.env.REACT_APP_DADATA_TOKEN
+    const { store } = useContext(Context)
 
     useEffect(() => {
         const close = (e: KeyboardEvent) => {
@@ -24,6 +30,12 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
         }
         window.addEventListener('keydown', close)
         return () => window.removeEventListener('keydown', close)
+    }, [])
+
+    useEffect(() => {
+        if (itemInfo.fields.length != 0) {
+            setExistingFields(itemInfo.fields)
+        }
     }, [])
 
     const [item, setItem] = useState({
@@ -40,14 +52,15 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
         photo: itemInfo.photo
     })
 
+    const [existingFields, setExistingFields] = useState<ExistingField[]>([])
+
+
     //States with 1 field and with array of fields
     const [field, setField] = useState<Field>({
         key: '',
         value: ''
     })
-    const [fields, setFields] = useState<Field[]>([field])
-
-
+    const [fields, setFields] = useState<Field[]>([])
 
     //Edit existing fields of item
     const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,18 +75,57 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
 
 
     //New fields handlers
-    const changeFieldHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        setField({ ...field, [e.target.name]: e.target.value })
+    const changeFieldHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setField(prev => {
+            let newData = { ...prev, [e.target.name]: e.target.value }
+            console.log(newData)
+            return newData
+        })
     }
+
+    const changeExistingFieldHandler = (e: ChangeEvent<HTMLInputElement>, id: string) => {
+        if (e.target.name == 'key') {
+            setExistingFields(prev => {
+                let newData = [...prev]
+                let index = existingFields.findIndex(el => el._id == id)
+                newData[index].key = e.target.value
+                console.log(newData[index])
+                return newData
+            })
+        } else {
+            setExistingFields(prev => {
+                let newData = [...prev]
+                let index = existingFields.findIndex(el => el._id == id)
+                newData[index].value = e.target.value
+                console.log(newData[index])
+                return newData
+            })
+        }
+    }
+
     const addFieldHandler = () => {
-        setFields([...fields, field])
+        setFields(prev => {
+            let newData = prev
+            newData.push(field)
+            return newData
+        })
         setField({ key: '', value: '' })
     }
 
     //Submiting changes
     const submitChangeItem = () => {
         show()
-        console.log(item, fields)
+    
+        let allFields = [...fields, existingFields]
+        
+        let data = {
+            id: itemInfo._id,
+            data: {
+                ...item,
+                fields: allFields
+            }
+        }
+        store.updateApplicationItem(data)
     }
 
     return (
@@ -81,7 +133,6 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
             <div className='editItemWindow'>
                 <h2>Изменить позицию</h2>
                 <div className='dopInfo'>
-
                     <div className='dopInfoBox'>
                         <Input settings={{ label: 'Штрих-код', name: 'barcode', type: 'text', value: item.barcode }} changeHandler={changeInfoHandler} />
                         <Input settings={{ label: 'Имя', name: 'name', type: 'text', value: item.name }} changeHandler={changeInfoHandler} />
@@ -123,18 +174,37 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                 </div>
                 <h2>Дополнительные поля</h2>
                 <div className='newFields'>
+
+                    <div className='newFieldsBox'>
+                        <h3>Добавить поле</h3>
+                        <Input settings={{ label: 'Название', name: 'key', type: 'text', value: field.key }} changeHandler={changeFieldHandler} />
+                        <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: field.value }} changeHandler={changeFieldHandler} />
+                    </div>
+                    {existingFields.map(el =>
+                        <div className='newFieldsBox'>
+                            <h3>Существующее поле</h3>
+                            <Input settings={{ label: 'Название', name: 'key', type: 'text', value: el.key }} changeHandler={(event: any) => changeExistingFieldHandler(event, el._id)} />
+                            <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: el.value }} changeHandler={(event: any) => changeExistingFieldHandler(event, el._id)} />
+                        </div>
+                    )}
                     {fields.map(el =>
                         <div className='newFieldsBox'>
-                            <Input settings={{ label: 'Название', name: 'key', type: 'text' }} changeHandler={changeFieldHandler} />
-                            <Input settings={{ label: 'Значение', name: 'value', type: 'text' }} changeHandler={changeFieldHandler} />
+                            <h3>Новое поле</h3>
+                            <Input settings={{ label: 'Название', name: 'key', type: 'text', value: el.key }} changeHandler={changeExistingFieldHandler} />
+                            <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: el.value }} changeHandler={changeExistingFieldHandler} />
                         </div>
                     )}
                 </div>
 
                 <div className='buttonsBox'>
-                    <button onClick={submitChangeItem} className="button-4" style={{width:'120px'}}>Применить</button>
-                    <button onClick={addFieldHandler} className="button-4" style={{width:'150px'}}>Добавить поле</button>
-                    <button onClick={show} className="button-4" style={{width:'120px'}}>Закрыть</button>
+                    <button onClick={submitChangeItem} className="button-4" style={{ width: '120px' }}>Применить</button>
+                    {field.key == '' || field.value == '' ?
+                        <button disabled onClick={addFieldHandler} className="button-4" style={{ width: '150px' }}>Добавить поле</button>
+                        :
+                        <button onClick={addFieldHandler} className="button-4" style={{ width: '150px' }}>Добавить поле</button>
+                    }
+
+                    <button onClick={show} className="button-4" style={{ width: '120px' }}>Закрыть</button>
                 </div>
             </div>
         </div>

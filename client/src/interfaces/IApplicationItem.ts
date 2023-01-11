@@ -10,5 +10,6 @@ export default interface IApplicationItem {
     recommended_price: string,
     size: string,
     weight: string,
+    fields: [],
     photo?: string
 }
