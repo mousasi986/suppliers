@@ -9,22 +9,27 @@ interface ITableStrProps {
 const TableStr = ({ data }: ITableStrProps) => {
     const navigate = useNavigate()
     const { store } = useContext(Context)
-    const [status, setStatus]= useState('')
+    const [status, setStatus]= useState({})
 
 
     const itemsShow = () => {
         navigate(`/application/${data._id}`)
     }
-
+    
     const changeStatusHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setStatus(prev => {
-            let newData = prev 
+            let newData = prev
+            newData = {
+                id: data._id!,
+                status: e.target.value
+            }
+            sendRequest(newData)
             return newData
         })
     }
 
-    const sendRequest = (role: object) => {
-        store.setUserRole(role)
+    const sendRequest = (status: object) => {
+        store.updateApplicationStatus(status)
     }
 
     return (
@@ -43,7 +48,6 @@ const TableStr = ({ data }: ITableStrProps) => {
                         <option value="Согласовано">Согласовано</option>
                     </select>
                 </td>
-                {/* <td>{data.status}</td> */}
             </tr>
         </>
     )
