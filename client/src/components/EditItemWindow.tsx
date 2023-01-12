@@ -6,7 +6,8 @@ import IApplicationItem from '../interfaces/IApplicationItem';
 import { Context } from '../index'
 interface EditItemProps {
     itemInfo: IApplicationItem,
-    show: VoidFunction
+    show: VoidFunction,
+    refresh: VoidFunction
 }
 interface Field {
     key: string,
@@ -18,7 +19,7 @@ interface ExistingField {
     value: string,
     _id: string
 }
-const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
+const EditItemWindow = ({ itemInfo, show, refresh }: EditItemProps) => {
     const dadata = process.env.REACT_APP_DADATA_TOKEN
     const { store } = useContext(Context)
 
@@ -114,7 +115,7 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
         show()
         let allFields = []
         if(existingFields.length != 0){
-            allFields = [...fields, existingFields]
+            allFields = [...fields, ...existingFields]
         }else{
             allFields = [...fields]
         }
@@ -127,7 +128,7 @@ const EditItemWindow = ({ itemInfo, show }: EditItemProps) => {
                 fields: allFields
             }
         }
-        console.log(JSON.stringify(data))
+        refresh()
         store.updateApplicationItem(data)
     }
 

@@ -63,7 +63,7 @@ const ApplicationPage = () => {
                 :
                 <>
                     <h1>Позиции:</h1>
-                    <ItemTable data={items} />
+                    <ItemTable data={items} refresh={refresh}/>
                 </>
             }
 

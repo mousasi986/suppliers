@@ -5,10 +5,11 @@ import IApplicationItem from '../interfaces/IApplicationItem'
 
 
 interface ItemTableProps {
-    data: Array<IApplicationItem>
+    data: Array<IApplicationItem>,
+    refresh: VoidFunction
 }
 
-const ItemTable = ({ data }: ItemTableProps) => {
+const ItemTable = ({ data, refresh }: ItemTableProps) => {
     
     return (
         <>
@@ -33,7 +34,7 @@ const ItemTable = ({ data }: ItemTableProps) => {
                                 <th>Доп. поля</th>
                             </tr>
                             {data.map(el =>
-                                <ItemTableStr key={el._id} data={el}/>
+                                <ItemTableStr key={el._id} data={el} refresh={refresh}/>
                             )}
                         </tbody>
                     </table>

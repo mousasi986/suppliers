@@ -1,11 +1,13 @@
 import IApplicationItem from '../interfaces/IApplicationItem'
 import React, { useState } from 'react'
 import EditItemWindow from './EditItemWindow'
+
 interface IItemTableStrProps {
-    data: IApplicationItem
+    data: IApplicationItem,
+    refresh: VoidFunction
 }
 
-const ItemTableStr = ({ data }: IItemTableStrProps) => {
+const ItemTableStr = ({ data, refresh }: IItemTableStrProps) => {
     const [showEdit, setShowEdit] = useState(false)
 
     const showEditModal = () => {
@@ -18,8 +20,7 @@ const ItemTableStr = ({ data }: IItemTableStrProps) => {
     return (
         <>
             {showEdit ?
-            
-                <EditItemWindow show={showEditModal} itemInfo={data}/>
+                <EditItemWindow show={showEditModal} itemInfo={data} refresh={refresh}/>
                 :
                 <></>
             }
