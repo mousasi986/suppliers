@@ -194,7 +194,12 @@ const EditItemWindow = ({ itemInfo, show, refresh }: EditItemProps) => {
                             </div>
                         )}
                     </div>
-                    <h3>Новые поля</h3>
+                    {fields.length == 0 ?
+                        <></>
+                        :
+                        <h3>Новые поля</h3>
+                    }
+
                     <div className='newFieldsBox'>
                         {fields.map(el =>
                             <div className='newFields'>
