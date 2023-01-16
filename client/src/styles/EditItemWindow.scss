@@ -27,24 +27,38 @@
     background-color: $lighter;
     border-radius: 10px;
     flex-wrap: wrap;
-
-    h2 {
-        margin: 10px;
+    
+    h2, h3 {
+        color: black;
+        margin-top: 10px;
     }
 
-    .newFields {
+    .mainFields {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         width: 450px;
-        flex-wrap: wrap;
+        align-items: center;
+        // flex-wrap: wrap;
     }
 
     .newFieldsBox {
         display: flex;
-        flex-direction: column;
-        margin-left: 20px;
-        margin-right: 20px;
+        flex-direction: row;
+        justify-content: center;
+        .newFields{
+            margin: 5px;
+        }
+    }
+
+    .existFieldsBox{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        .existFields{
+            margin: 5px;
+        }
     }
 
     .dopInfo {

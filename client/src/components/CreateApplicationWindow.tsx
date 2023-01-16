@@ -81,8 +81,8 @@ const CreateApplicationWindow = (props: any) => {
                     </div>
                 </div>
                 <div className='buttonsBox'>
-                    <button onClick={submitHandler}>Создать</button>
-                    <button onClick={props.show}>Закрыть</button>
+                    <button onClick={submitHandler} className='button-4'>Создать</button>
+                    <button onClick={props.show} className='button-4'>Закрыть</button>
                 </div>
             </div>
         </div>

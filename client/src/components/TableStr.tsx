@@ -27,7 +27,7 @@ const TableStr = ({ data }: ITableStrProps) => {
             return newData
         })
     }
-
+    
     const sendRequest = (status: object) => {
         store.updateApplicationStatus(status)
     }

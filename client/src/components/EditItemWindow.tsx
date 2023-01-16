@@ -114,13 +114,13 @@ const EditItemWindow = ({ itemInfo, show, refresh }: EditItemProps) => {
     const submitChangeItem = () => {
         show()
         let allFields = []
-        if(existingFields.length != 0){
+        if (existingFields.length != 0) {
             allFields = [...fields, ...existingFields]
-        }else{
+        } else {
             allFields = [...fields]
         }
-        
-        
+
+
         let data = {
             id: itemInfo._id,
             data: {
@@ -176,28 +176,33 @@ const EditItemWindow = ({ itemInfo, show, refresh }: EditItemProps) => {
                         <Input settings={{ label: 'Фото', name: 'photo', type: 'text', value: item.photo }} changeHandler={changeInfoHandler} />
                     </div>
                 </div>
-                <h2>Дополнительные поля</h2>
-                <div className='newFields'>
 
-                    <div className='newFieldsBox'>
+                <h2>Дополнительные поля</h2>
+                <div className='mainFields'>
+                    <div className='addFieldsBox'>
                         <h3>Добавить поле</h3>
                         <Input settings={{ label: 'Название', name: 'key', type: 'text', value: field.key }} changeHandler={changeFieldHandler} />
                         <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: field.value }} changeHandler={changeFieldHandler} />
                     </div>
-                    {existingFields.map(el =>
-                        <div className='newFieldsBox'>
-                            <h3>Существующее поле</h3>
-                            <Input settings={{ label: 'Название', name: 'key', type: 'text', value: el.key }} changeHandler={(event: any) => changeExistingFieldHandler(event, el._id)} />
-                            <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: el.value }} changeHandler={(event: any) => changeExistingFieldHandler(event, el._id)} />
-                        </div>
-                    )}
-                    {fields.map(el =>
-                        <div className='newFieldsBox'>
-                            <h3>Новое поле</h3>
-                            <Input settings={{ label: 'Название', name: 'key', type: 'text', value: el.key }} changeHandler={changeExistingFieldHandler} />
-                            <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: el.value }} changeHandler={changeExistingFieldHandler} />
-                        </div>
-                    )}
+
+                    <h3>Существующие поля</h3>
+                    <div className='existFieldsBox'>
+                        {existingFields.map(el =>
+                            <div className='existFields'>
+                                <Input settings={{ label: 'Название', name: 'key', type: 'text', value: el.key }} changeHandler={(event: any) => changeExistingFieldHandler(event, el._id)} />
+                                <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: el.value }} changeHandler={(event: any) => changeExistingFieldHandler(event, el._id)} />
+                            </div>
+                        )}
+                    </div>
+                    <h3>Новые поля</h3>
+                    <div className='newFieldsBox'>
+                        {fields.map(el =>
+                            <div className='newFields'>
+                                <Input settings={{ label: 'Название', name: 'key', type: 'text', value: el.key }} changeHandler={changeExistingFieldHandler} />
+                                <Input settings={{ label: 'Значение', name: 'value', type: 'text', value: el.value }} changeHandler={changeExistingFieldHandler} />
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className='buttonsBox'>

@@ -47,8 +47,9 @@ const SuppliersPage: React.FC = () => {
                 :
                 <>
                     <h1>Ваши заявки</h1>
-                    <button onClick={showCreateModal}>Создать</button>
+
                     <Table data={applications} />
+                    <button style={{margin:'20px'}} className='button-4' onClick={showCreateModal}>Создать</button>
                 </>
             }
             {showForm ?

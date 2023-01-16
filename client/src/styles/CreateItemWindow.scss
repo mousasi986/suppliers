@@ -12,13 +12,13 @@
     z-index: 9999;
 }
 
-.createApplicationWindow {
+.createItemWindow {
     margin: 3% auto;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 400px;
+    height: auto;
     width: 800px;
     background-color: $lighter;
     border-radius: 10px;

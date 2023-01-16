@@ -62,7 +62,7 @@ const CreateItemWindow = (props: any) => {
 
     return (
         <div className='dark_modal'>
-            <div className='createApplicationWindow'>
+            <div className='createItemWindow'>
                 <h2>Добавить позицию</h2>
                 <div className='dopInfo'>
                     <div className='dopInfoBox'>
@@ -104,8 +104,8 @@ const CreateItemWindow = (props: any) => {
                 </div>
 
                 <div className='buttonsBox'>
-                    <button onClick={submitHandler}>Создать</button>
-                    <button onClick={props.show}>Закрыть</button>
+                    <button onClick={submitHandler} className="button-4">Создать</button>
+                    <button onClick={props.show} className="button-4">Закрыть</button>
                 </div>
             </div>
         </div>
