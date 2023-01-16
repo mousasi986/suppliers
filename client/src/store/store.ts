@@ -167,4 +167,12 @@ export default class Store {
         }
     }
 
+    async sendNotification(data:object){
+        try {
+            const response = await ApplicationService.sendNotification(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }

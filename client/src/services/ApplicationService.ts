@@ -32,4 +32,7 @@ export default class ApplicationService{
     static async updateApplicationItem(data:object):Promise<AxiosResponse>{
         return $api.post('/updateApplicationItem',data)
     }
+    static async sendNotification(data:object):Promise<AxiosResponse>{
+        return $api.post('/sendNotification',data)
+    }
 }

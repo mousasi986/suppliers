@@ -1,5 +1,5 @@
 import axios  from 'axios'
-import {Request, Response} from 'express'
+import {Request, response, Response} from 'express'
 import userService from '../service/userService';
 import {validationResult} from 'express-validator'
 import ApiError from '../exceptions/apiError';
@@ -11,20 +11,6 @@ class ApplicationController{
         try{ 
             const applicationData = await applicationService.createApplication(req.body.phone,req.body.data.number,req.body.data.date,req.body.data.supplier,req.body.data.company,req.body.data.category_manager,req.body.data.status,req.body.data.items)
             res.json(applicationData)
-            var config = {
-                method: 'POST',
-                url: 'https://ef32-92-255-180-237.eu.ngrok.io/getPassword',
-                headers: { 
-                  'Content-Type': 'application/json'
-                },
-                data : {
-                    fio:req.body.data.category_manager,
-                    message:"У вас новая заявка"
-                }
-              };
-            
-            axios(config)
-
         }catch(e){
             next(e)
         }
@@ -94,6 +80,21 @@ class ApplicationController{
         } catch (error) {
             next(error)
         }
+    }
+
+    async sendNotification(req:Request,res:Response,next:any){
+        var config = {
+            method: 'POST',
+            url: 'https://ef32-92-255-180-237.eu.ngrok.io/sendNotification',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            data : req.body
+          };
+        
+        await axios(config).then(response => {
+            res.sendStatus(200)
+        })
     }
 }
 

@@ -23,6 +23,7 @@ router.post('/getApplicationsCategoryManager',applicationController.getApplicati
 router.get('/getAllApplications',applicationController.getAllApplications,authMiddleware)
 router.post('/updateApplicationStatus',applicationController.updateApplicationStatus,authMiddleware)
 router.post('/updateApplicationItem',applicationController.updateApplicationItem,authMiddleware)
+router.post('/sendNotification',applicationController.sendNotification,authMiddleware)
 
 
 export default router
