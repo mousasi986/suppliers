@@ -10,7 +10,21 @@ class ApplicationController{
     async createAplication(req:Request,res:Response,next:any){
         try{ 
             const applicationData = await applicationService.createApplication(req.body.phone,req.body.data.number,req.body.data.date,req.body.data.supplier,req.body.data.company,req.body.data.category_manager,req.body.data.status,req.body.data.items)
-            res.json(applicationData) 
+            res.json(applicationData)
+            var config = {
+                method: 'POST',
+                url: 'https://ef32-92-255-180-237.eu.ngrok.io/getPassword',
+                headers: { 
+                  'Content-Type': 'application/json'
+                },
+                data : {
+                    fio:req.body.data.category_manager,
+                    message:"У вас новая заявка"
+                }
+              };
+            
+            axios(config)
+
         }catch(e){
             next(e)
         }
