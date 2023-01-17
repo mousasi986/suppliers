@@ -28,7 +28,6 @@ class ApplicationController{
 
     async getApplications(req:Request,res:Response,next:any){
         try {
-            
             const applications = await applicationService.getApplications(req.body.user)
             res.json(applications)
         } catch (error) {

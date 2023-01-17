@@ -13,7 +13,7 @@ class ApplicationService{
             const user = await userModel.findOne({phone})
             if(user){
                 const userDto = new UserDto(user)
-                const application = await applicationModel.create({user:userDto.id,number,date,supplier,company,category_manager,status,items})
+                const application = await applicationModel.create({user:userDto._id,number,date,supplier,company,category_manager,status,items})
                 const  applicaionDto = new ApplicationDto(application)
                 return{application:applicaionDto}
             }

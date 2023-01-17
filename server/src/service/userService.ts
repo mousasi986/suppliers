@@ -18,7 +18,7 @@ class UserService{
             }
             const  userDto = new UserDto(candidate)
             const tokens = tokenService.generateTokens({...userDto})
-            await tokenService.saveToken(userDto.id,tokens.refreshToken)
+            await tokenService.saveToken(userDto._id,tokens.refreshToken)
 
             return{...tokens,user:userDto}
              
@@ -26,7 +26,7 @@ class UserService{
         const user = await userModel.create({phone,password: hashPassword,chatId,messageId,fio})
         const  userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})
-        await tokenService.saveToken(userDto.id,tokens.refreshToken)
+        await tokenService.saveToken(userDto._id,tokens.refreshToken)
 
         return{...tokens,user:userDto}
     }
@@ -48,11 +48,11 @@ class UserService{
         if(!userData || !tokenFromDB){
             throw ApiError.UnauthorizedError()
         }
-        const user  =  await userModel.findById(userData.id).populate('role')
+        const user  =  await userModel.findById(userData._id).populate('role')
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})
 
-        await tokenService.saveToken(userDto.id,tokens.refreshToken)
+        await tokenService.saveToken(userDto._id,tokens.refreshToken)
 
         return {...tokens,user:userDto}
      }

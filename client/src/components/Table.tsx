@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, {} from 'react'
 import '../styles/Table.scss'
 import TableStr from './TableStr'
 import IApplication from '../interfaces/IApplication'
-import { Context } from '../index'
+
 
 interface TableProps{
     data: Array<IApplication>
 }
 
 const Table = ({data}:TableProps) => {
-    const { store } = useContext(Context)
+    
 
     return (
         <>

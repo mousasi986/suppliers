@@ -20,7 +20,7 @@ const SuppliersPage: React.FC = () => {
     const [applications, setApplications] = useState<IApplication[]>([])
 
     useEffect(() => {
-        store.getApplications(user.id).then(result => {
+        store.getApplications(user._id).then(result => {
             setApplications(prev => {
                 prev = result
                 return prev
@@ -29,7 +29,7 @@ const SuppliersPage: React.FC = () => {
     }, [])
 
     const refresh = () => {
-        store.getApplications(user.id).then(result => {
+        store.getApplications(user._id).then(result => {
             setApplications(prev => {
                 prev = result
                 return prev

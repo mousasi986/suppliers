@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom'
 import IApplication from '../interfaces/IApplication'
 import { Context } from '../index'
 import React, { ChangeEvent, useContext, useState } from 'react'
+
 interface ITableStrProps {
     data: IApplication
 }
+
 interface StatusRequestData {
     id: string, 
     status: string
