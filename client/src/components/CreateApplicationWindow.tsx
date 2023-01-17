@@ -5,6 +5,7 @@ import IApplication from '../interfaces/IApplication'
 import Input from './Input'
 import { Context } from '../index'
 import ReactDadataBox from 'react-dadata-box';
+import { findDOMNode } from 'react-dom'
 
 const CreateApplicationWindow = (props: any) => {
     const { store } = useContext(Context)
@@ -30,13 +31,17 @@ const CreateApplicationWindow = (props: any) => {
     })
 
     const submitHandler = () => {
-        const data ={
+        const data = {
             phone: store.user.phone,
-            data : {
+            data: {
                 ...main
             }
         }
-        store.addApplication(data).then(()=>{props.refresh()})
+        store.addApplication(data).then(() => {
+            props.refresh()
+            
+            store.sendNotification({fio: main.category_manager, message: "У вас новая заявка, номер: " + main.number})
+        })
         props.show()
     }
 
@@ -47,7 +52,7 @@ const CreateApplicationWindow = (props: any) => {
         setMain({ ...main, [e.target.name]: e.target.value })
     }
     const changeDadataHandler = (suggestion: any) => {
-        setMain({...main, company: suggestion.unrestricted_value})  
+        setMain({ ...main, company: suggestion.unrestricted_value })
     }
 
     return (

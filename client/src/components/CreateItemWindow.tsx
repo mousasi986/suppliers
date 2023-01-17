@@ -5,15 +5,22 @@ import Input from './Input'
 import { Context } from '../index'
 
 import ReactDadataBox from 'react-dadata-box';
+import IApplication from '../interfaces/IApplication';
 
-const CreateItemWindow = (props: any) => {
+interface CreateItemWindowProps {
+    show: VoidFunction,
+    refresh: VoidFunction,
+    applicationInfo: IApplication
+}
+
+const CreateItemWindow = ({show, refresh, applicationInfo}:CreateItemWindowProps) => {
     const { store } = useContext(Context)
     const dadata = process.env.REACT_APP_DADATA_TOKEN
 
     useEffect(() => {
         const close = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
-                props.show()
+                show()
             }
         }
         window.addEventListener('keydown', close)
@@ -39,14 +46,17 @@ const CreateItemWindow = (props: any) => {
 
     const submitHandler = () => {
         const data = {
-            id: props.id,
+            id: applicationInfo._id,
             data: {
                 ...item
             }
         }
         // console.log(data)
-        store.addApplicationItem(data).then(() => { props.refresh() })
-        props.show()
+        store.addApplicationItem(data).then(() => {
+            store.sendNotification({fio: applicationInfo.category_manager, message: `В заявке номер ${applicationInfo.number} добавлена новая позиция`})
+            refresh()
+        })
+        show()
     }
 
     const changeInfoHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +66,7 @@ const CreateItemWindow = (props: any) => {
         setItem({ ...item, [e.target.name]: e.target.value })
     }
     const changeDadataHandler = (suggestion: any) => {
-        setItem({...item, country: suggestion.unrestricted_value})  
+        setItem({ ...item, country: suggestion.unrestricted_value })
     }
 
 
@@ -105,7 +115,7 @@ const CreateItemWindow = (props: any) => {
 
                 <div className='buttonsBox'>
                     <button onClick={submitHandler} className="button-4">Создать</button>
-                    <button onClick={props.show} className="button-4">Закрыть</button>
+                    <button onClick={show} className="button-4">Закрыть</button>
                 </div>
             </div>
         </div>

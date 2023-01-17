@@ -4,10 +4,12 @@ import Input from './Input'
 import ReactDadataBox from 'react-dadata-box';
 import IApplicationItem from '../interfaces/IApplicationItem';
 import { Context } from '../index'
+import IApplication from '../interfaces/IApplication';
 interface EditItemProps {
     itemInfo: IApplicationItem,
     show: VoidFunction,
-    refresh: VoidFunction
+    refresh: VoidFunction,
+    applicationInfo: IApplication
 }
 interface Field {
     key: string,
@@ -19,7 +21,7 @@ interface ExistingField {
     value: string,
     _id: string
 }
-const EditItemWindow = ({ itemInfo, show, refresh }: EditItemProps) => {
+const EditItemWindow = ({ itemInfo, show, refresh, applicationInfo }: EditItemProps) => {
     const dadata = process.env.REACT_APP_DADATA_TOKEN
     const { store } = useContext(Context)
 
@@ -129,7 +131,20 @@ const EditItemWindow = ({ itemInfo, show, refresh }: EditItemProps) => {
             }
         }
         refresh()
-        store.updateApplicationItem(data)
+        store.updateApplicationItem(data).then(() => {
+            if (store.user.role.role == 'supplier') {
+                store.sendNotification({
+                    fio: applicationInfo.category_manager,
+                    message: `Поставщик ${applicationInfo.supplier} изменил позиции в заявке номер: ${applicationInfo.number}`
+                })
+            } else {
+                store.sendNotification({
+                    fio: applicationInfo.supplier,
+                    message: `Категорийный менеджер ${applicationInfo.category_manager} изменил позиции в заявке номер: ${applicationInfo.number}`
+                })
+            }
+            // 
+        })
     }
 
     return (

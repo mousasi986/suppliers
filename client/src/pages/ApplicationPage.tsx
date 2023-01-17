@@ -78,7 +78,7 @@ const ApplicationPage = () => {
 
 
             {showForm ?
-                <CreateItemWindow id={id} show={showCreateModal} refresh={refresh} />
+                <CreateItemWindow applicationInfo={applicationInfo} show={showCreateModal} refresh={refresh} />
                 :
                 <></>
             }
@@ -96,7 +96,7 @@ const ApplicationPage = () => {
                 <>
                     <h1>Позиции:</h1>
 
-                    <ItemTable data={items} refresh={refresh} />
+                    <ItemTable applicationInfo={applicationInfo} data={items} refresh={refresh} />
                     {user_role != 'category_manager' ?
                         <button onClick={showCreateModal} className="button-4" style={{ width: '160px', margin: '20px' }}>Добавить позицию</button>
                         :

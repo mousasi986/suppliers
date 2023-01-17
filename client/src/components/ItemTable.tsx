@@ -2,14 +2,16 @@ import React, { useState, useEffect, useContext } from 'react'
 import '../styles/Table.scss'
 import ItemTableStr from './ItemTableStr'
 import IApplicationItem from '../interfaces/IApplicationItem'
+import IApplication from '../interfaces/IApplication'
 
 
 interface ItemTableProps {
     data: Array<IApplicationItem>,
-    refresh: VoidFunction
+    refresh: VoidFunction,
+    applicationInfo: IApplication
 }
 
-const ItemTable = ({ data, refresh }: ItemTableProps) => {
+const ItemTable = ({ data, refresh, applicationInfo }: ItemTableProps) => {
     
     return (
         <>
@@ -34,7 +36,7 @@ const ItemTable = ({ data, refresh }: ItemTableProps) => {
                                 <th>Доп. поля</th>
                             </tr>
                             {data.map(el =>
-                                <ItemTableStr key={el._id} data={el} refresh={refresh}/>
+                                <ItemTableStr key={el._id} data={el} applicationInfo={applicationInfo} refresh={refresh}/>
                             )}
                         </tbody>
                     </table>

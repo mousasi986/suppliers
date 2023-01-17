@@ -5,17 +5,24 @@ import React, { ChangeEvent, useContext, useState } from 'react'
 interface ITableStrProps {
     data: IApplication
 }
+interface StatusRequestData {
+    id: string, 
+    status: string
+}
 
 const TableStr = ({ data }: ITableStrProps) => {
     const navigate = useNavigate()
     const { store } = useContext(Context)
-    const [status, setStatus]= useState({})
+    const [status, setStatus] = useState<StatusRequestData>({
+        id: '',
+        status: ''
+    })
 
 
     const itemsShow = () => {
         navigate(`/application/${data._id}`)
     }
-    
+
     const changeStatusHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setStatus(prev => {
             let newData = prev
@@ -27,9 +34,21 @@ const TableStr = ({ data }: ITableStrProps) => {
             return newData
         })
     }
-    
-    const sendRequest = (status: object) => {
-        store.updateApplicationStatus(status)
+
+    const sendRequest = (status: StatusRequestData) => {
+        store.updateApplicationStatus(status).then(() => {
+            if (store.user.role.role == 'supplier') {
+                store.sendNotification({
+                    fio: data.category_manager,
+                    message: `Поставщик ${data.supplier} изменил статус в заявке номер: ${data.number} на '${status.status}'`
+                })
+            } else {
+                store.sendNotification({
+                    fio: data.supplier,
+                    message: `Категорийный менеджер ${data.category_manager} изменил статус в заявке номер: ${data.number} на '${status.status}'`
+                })
+            }
+        })
     }
 
     return (
