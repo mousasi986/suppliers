@@ -66,7 +66,6 @@ export default class Store {
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-            console.log(response.data.user)
         } catch (e) {
             console.log(e)
         } finally {
