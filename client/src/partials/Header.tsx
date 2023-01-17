@@ -15,7 +15,7 @@ const Header = () => {
               store.user.role.role == 'admin' ?
                 <header>
                   <div className='logo'>
-                    <Link to='/'>Администратор</Link>
+                    <Link to='/'>Suppliers</Link>
                   </div>
                   <div className='main'>
                     <Link to='/applications'>Все заявки</Link>
@@ -40,7 +40,7 @@ const Header = () => {
             {store.user.role.role == 'supplier' ?
               <header>
                 <div className='logo'>
-                  <Link to='/'>Поставщик</Link>
+                  <Link to='/'>Suppliers</Link>
                 </div>
 
                   <Link style={{ textAlign: 'center', fontSize: '20px' }} to='/supplier'>Создать заявку</Link>
@@ -61,7 +61,7 @@ const Header = () => {
             {store.user.role.role == 'category_manager' ?
               <header>
                 <div className='logo'>
-                  <Link to='/'>Категорийный менеджер</Link>
+                  <Link to='/'>Suppliers</Link>
                 </div>
                 <Link style={{ textAlign: 'center', fontSize: '20px' }} to='/category_manager'>Посмотреть заявки</Link>
                 <div className='header_auth'>

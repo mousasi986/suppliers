@@ -46,8 +46,8 @@ const SuppliersPage: React.FC = () => {
                 </>
                 :
                 <>
-                    <h1>Ваши заявки</h1>
-
+                    <h1>Поставщик {store.user.fio}</h1>
+                    <h2>Ваши заявки</h2>
                     <Table data={applications} />
                     <button style={{margin:'20px'}} className='button-4' onClick={showCreateModal}>Создать</button>
                 </>

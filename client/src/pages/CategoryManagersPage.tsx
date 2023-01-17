@@ -4,16 +4,16 @@ import { Context } from '../index'
 import IApplication from '../interfaces/IApplication'
 import '../styles/CategoryManagerPage.scss'
 
-const CategoryManagersPage:React.FC = () => {
+const CategoryManagersPage: React.FC = () => {
     const { store } = useContext(Context)
     const [applications, setApplications] = useState<IApplication[]>([])
 
     useEffect(() => {
         store.getApplicationsCategoryManager(store.user.fio).then(result => {
-            let supplierData:IApplication[] = []
+            let supplierData: IApplication[] = []
 
-            result.forEach((el:IApplication) => {
-                if (el.status != 'Черновик'){
+            result.forEach((el: IApplication) => {
+                if (el.status != 'Черновик') {
                     supplierData.push(el)
                 }
             });
@@ -26,10 +26,19 @@ const CategoryManagersPage:React.FC = () => {
     }, [])
 
 
-    return(
-         <div className='category_manager_main'>
-            <h1>Категорийный менеджер</h1>
-            <Table data={applications} />
+    return (
+        <div className='category_manager_main'>
+            {applications.length == 0 ?
+                <>
+                    <h1>У вас нет заявок</h1>
+                </>
+                :
+                <>
+                    <h1>Категорийный менеджер {store.user.fio}</h1>
+                    <h2>Ваши заявки</h2>
+                    <Table data={applications} />
+                </>
+            }
         </div>
     )
 }
