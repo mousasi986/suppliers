@@ -22,11 +22,10 @@ const Header = () => {
                     <Link to='/users'>Все пользователи</Link>
                   </div>
                   <div className='header_auth'>
-                    {store.isAuth ?
-                      <a href="/profile"><img src="account.svg" width={'50px'}/></a>
-                      :
-                      <></>
-                    }
+                    
+                    <Link to="/profile"><img src="account.svg" width={'50px'}/></Link>
+                      
+                    
 
                   </div>
                 </header>
@@ -44,11 +43,7 @@ const Header = () => {
                 <Link style={{ textAlign: 'center', fontSize: '20px' }} to='/supplier'>Создать заявку</Link>
 
                 <div className='header_auth'>
-                  {store.isAuth ?
-                    <a href="/profile"><img src="account.svg" width={'50px'}/></a>
-                    :
-                    <></>
-                  }
+                <Link to="/profile"><img src="account.svg" width={'50px'}/></Link>
 
                 </div>
               </header>
@@ -63,11 +58,7 @@ const Header = () => {
                 </div>
                 <Link style={{ textAlign: 'center', fontSize: '20px' }} to='/category_manager'>Посмотреть заявки</Link>
                 <div className='header_auth'>
-                  {store.isAuth ?
-                    <a href="/profile"><img src="account.svg" width={'50px'}/></a>
-                    :
-                    <></>
-                  }
+                <Link to="/profile"><img src="account.svg" width={'50px'}/></Link>
 
                 </div>
               </header>

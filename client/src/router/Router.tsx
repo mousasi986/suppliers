@@ -19,7 +19,7 @@ export default class useRoutes {
                 <Route path='/application/:id' element={<ApplicationPage />} />
 
                 <Route path='/users' element={<AllUsersPage />} />
-
+                <Route path='/profile' element={<ProfilePage />} />
                 <Route path='*' element={<Navigate replace to="/" />} />
             </Routes>
         )
@@ -43,6 +43,7 @@ export default class useRoutes {
                 <Route path='/' element={<CategoryManagersPage />} />
                 <Route path='/application/:id' element={<ApplicationPage />} />
                 <Route path='/category_manager' element={<CategoryManagersPage />} />
+                <Route path='/profile' element={<ProfilePage />} />
                 <Route path='*' element={<Navigate replace to="/" />} />
             </Routes>
         )
